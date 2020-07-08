@@ -63,7 +63,7 @@ bgImage = ImageTk.PhotoImage(Image.open('CloudsBg.gif'))
 bgCanvas = tk.Canvas(root, bg='#15adc2')
 bgCanvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
 bgCanvas.create_image(450, 250, image=bgImage)
-bgCanvas.create_text(678, 200, anchor=tk.CENTER, font=(
+bgCanvas.create_text(675, 200, anchor=tk.CENTER, font=(
     'Calibre', '28'), text='Weather Forecast - Login')
 
 # Creating Buttons:
@@ -75,6 +75,5 @@ btn1.createButton()
 btn2.createButton()
 btn3.createButton()
 btn4.createButton()
-
 
 root.mainloop()
