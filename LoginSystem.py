@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 from PIL import Image, ImageTk
 
 
@@ -24,8 +23,13 @@ class addButtons(tk.Canvas):
 
 
 # Functions:
+def loginButtonClicked(root):
+    pass
+
+
 def confirmDialog():
-    quitDialog = tk.Toplevel()
+    quitDialog = tk.Toplevel(root)
+    quitDialog.grab_set()
     quitDialog.title('Quit Confirmation')
     quitDialog.geometry('300x90')
 
@@ -47,9 +51,10 @@ def Quit():
 root = tk.Tk()
 root.title('The Weather Forecast App')
 screenWidth = root.winfo_screenwidth()
-screenHeight = root.winfo_screenheight()
+screenHeight = (root.winfo_screenheight() - 25)
 root.geometry('{}x{}'.format(screenWidth, screenHeight))
-root.maxsize(screenWidth, screenHeight)
+# root.maxsize(screenWidth, screenHeight)
+root.resizable(0, 0)
 
 # Assigning Background Image
 bgImage = ImageTk.PhotoImage(Image.open('CloudsBg.gif'))
