@@ -36,7 +36,7 @@ bgCanvas = tk.Canvas(root, bg='#15adc2')
 bgCanvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
 bgCanvas.create_image(450, 250, image=bgImage)
 bgCanvas.create_text(678, 200, anchor=tk.CENTER, font=(
-    'Ariel', '28'), text='Weather Forecast - Login')
+    'Calibre', '28'), text='Weather Forecast - Login')
 
 # Creating Buttons:
 btn1 = addButtons('Sign-In', 20, rely=0.45)
