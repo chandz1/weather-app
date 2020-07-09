@@ -1,6 +1,10 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
+# Lists & Variables:
+inputEntries = []
+loginInfo = {}
+
 
 # Classes:
 class addButtons():
@@ -22,23 +26,37 @@ class addButtons():
 
 
 # Functions:
+def loadFile():
+    loginFileData = pickle.load(open("LoginData", "rb"))
+
+
+def saveFile():
+    pickle.dump(loginInfo, open("LoginData", "wb"))
+
+
 def loginButtonClicked():
     loginWindow = tk.Toplevel(root)
     loginWindow.grab_set()
     loginWindow.title('Login')
     loginWindow.geometry('400x550')
+    loginWindow.resizable(0, 0)
     usernameInput = tk.Entry(loginWindow)
     usernameInput.place(relx=0.65, rely=0.45, anchor=tk.CENTER)
     passwordInput = tk.Entry(loginWindow)
     passwordInput.place(relx=0.65, rely=0.55, anchor=tk.CENTER)
+    inputEntries.append(usernameInput)
+    inputEntries.append(passwordInput)
     Loginbtn = addButtons(loginWindow, 'Login', 10, 0.65,
                           command=getLoginInput)
-    btn.createButton()
+    Loginbtn.createButton()
 
 
 def getLoginInput():
-    text = inputField.get()
-    print(text)
+    username = inputEntries[0].get()
+    password = inputEntries[1].get()
+    loginInfo.update(userId=username, passKey=password)
+    print(loginInfo)
+    saveFile()
 
 
 def confirmDialog():
@@ -62,6 +80,7 @@ def Quit():
 
 
 # Initial Window Creation:
+loadFile()
 root = tk.Tk()
 root.title('The Weather Forecast App')
 screenWidth = root.winfo_screenwidth()
