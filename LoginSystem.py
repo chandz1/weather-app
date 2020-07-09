@@ -1,9 +1,13 @@
+# Imports:
 import tkinter as tk
 from PIL import Image, ImageTk
+import json
+
 
 # Lists & Variables:
 inputEntries = []
 loginInfo = {}
+compLoginInfo = {}
 
 
 # Classes:
@@ -26,12 +30,30 @@ class addButtons():
 
 
 # Functions:
-def loadFile():
-    loginFileData = pickle.load(open("LoginData", "rb"))
+def writeJson(data, filename='loginData.json'):
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
 
 
 def saveFile():
-    pickle.dump(loginInfo, open("LoginData", "wb"))
+    global compLoginInfo
+    with open('loginData.json') as jsonFile:
+        data = json.load(jsonFile)
+        temp = data['userLoginData']
+        temp.append(loginInfo)
+    writeJson(data)
+
+
+def login():
+    fileData = json.load(open('loginData.json', 'r'))
+    allUsers = fileData['userLoginData']
+    for user in allUsers:
+        realUsername = user.get('Username')
+        realPassword = user.get('Password')
+        compUsername = compLoginInfo.get('Username')
+        compPassword = compLoginInfo.get('Password')
+        if realUsername == compUsername and realPassword == compPassword:
+            print('logged in')
 
 
 def loginButtonClicked():
@@ -39,35 +61,35 @@ def loginButtonClicked():
     loginWindow.grab_set()
     loginWindow.title('Login')
     loginWindow.geometry('400x550')
-<<<<<<< HEAD
     loginWindow.resizable(0, 0)
-=======
-    label_user = tk.Label(loginWindow, text='username', font=(
-        'Source Code Pro', '15')).place(relx=0.3, rely=0.45, anchor=tk.CENTER)
-    label_user = tk.Label(loginWindow, text='password', font=(
-        'Source Code Pro', '15')).place(relx=0.3, rely=0.55, anchor=tk.CENTER)
->>>>>>> origin/master
+    labelUser = tk.Label(loginWindow, text='username',
+                         font=('Calibre', '15'))
+    labelUser.place(relx=0.3, rely=0.45, anchor=tk.CENTER)
+    labelPass = tk.Label(loginWindow, text='password',
+                         font=('Calibre', '15'))
+    labelPass.place(relx=0.3, rely=0.55, anchor=tk.CENTER)
     usernameInput = tk.Entry(loginWindow)
     usernameInput.place(relx=0.65, rely=0.45, anchor=tk.CENTER)
     passwordInput = tk.Entry(loginWindow)
     passwordInput.place(relx=0.65, rely=0.55, anchor=tk.CENTER)
-<<<<<<< HEAD
     inputEntries.append(usernameInput)
     inputEntries.append(passwordInput)
     Loginbtn = addButtons(loginWindow, 'Login', 10, 0.65,
                           command=getLoginInput)
-=======
-    Loginbtn = addButtons(loginWindow, 'Login', 10, 0.65, command=getLoginInput)
->>>>>>> origin/master
     Loginbtn.createButton()
 
 
 def getLoginInput():
+    global compLoginInfo
     username = inputEntries[0].get()
     password = inputEntries[1].get()
-    loginInfo.update(userId=username, passKey=password)
-    print(loginInfo)
-    saveFile()
+    compLoginInfo.update(Username=username, Password=password)
+    print(compLoginInfo)
+    login()
+
+
+def Quit():
+    root.destroy()
 
 
 def confirmDialog():
@@ -86,12 +108,7 @@ def confirmDialog():
     yesbtn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
-def Quit():
-    root.destroy()
-
-
 # Initial Window Creation:
-loadFile()
 root = tk.Tk()
 root.title('The Weather Forecast App')
 screenWidth = root.winfo_screenwidth()
@@ -108,7 +125,7 @@ bgCanvas = tk.Canvas(root, bg='#15adc2')
 bgCanvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
 bgCanvas.create_image(450, 250, image=bgImage)
 bgCanvas.create_text(675, 200, anchor=tk.CENTER, font=(
-    'Source Code Pro', '28'), text='Weather Forecast - Login')
+    'Calibre', '28'), text='Weather Forecast - Login')
 
 # Creating Buttons:
 btn1 = addButtons(bgCanvas, 'Login', 20, 0.45, command=loginButtonClicked)
