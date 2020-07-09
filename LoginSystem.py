@@ -27,13 +27,16 @@ def loginButtonClicked():
     loginWindow.grab_set()
     loginWindow.title('Login')
     loginWindow.geometry('400x550')
+    label_user = tk.Label(loginWindow, text='username', font=(
+        'Source Code Pro', '15')).place(relx=0.3, rely=0.45, anchor=tk.CENTER)
+    label_user = tk.Label(loginWindow, text='password', font=(
+        'Source Code Pro', '15')).place(relx=0.3, rely=0.55, anchor=tk.CENTER)
     usernameInput = tk.Entry(loginWindow)
     usernameInput.place(relx=0.65, rely=0.45, anchor=tk.CENTER)
     passwordInput = tk.Entry(loginWindow)
     passwordInput.place(relx=0.65, rely=0.55, anchor=tk.CENTER)
-    Loginbtn = addButtons(loginWindow, 'Login', 10, 0.65,
-                          command=getLoginInput)
-    btn.createButton()
+    Loginbtn = addButtons(loginWindow, 'Login', 10, 0.65, command=getLoginInput)
+    Loginbtn.createButton()
 
 
 def getLoginInput():
