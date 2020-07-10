@@ -62,10 +62,10 @@ def loginButtonClicked():
     loginWindow.title('Login')
     loginWindow.geometry('400x550')
     loginWindow.resizable(0, 0)
-    labelUser = tk.Label(loginWindow, text='username',
+    labelUser = tk.Label(loginWindow, text='Username',
                          font=('Calibre', '15'))
     labelUser.place(relx=0.3, rely=0.45, anchor=tk.CENTER)
-    labelPass = tk.Label(loginWindow, text='password',
+    labelPass = tk.Label(loginWindow, text='Password',
                          font=('Calibre', '15'))
     labelPass.place(relx=0.3, rely=0.55, anchor=tk.CENTER)
     usernameInput = tk.Entry(loginWindow)
