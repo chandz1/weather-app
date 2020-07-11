@@ -14,6 +14,22 @@ guest = False
 
 
 # Classes:
+class TopLevel():
+    def __init__(self, title, geometry):
+        self.title = title
+        self.geometry = geometry
+
+    def createTopLevel(self, master):
+        global topLevel
+        topLevel = tk.Toplevel(master)
+        topLevel.grab_set()
+        topLevel.title(self.title)
+        topLevel.geometry(self.geometry)
+        topLevel.resizable(0, 0)
+
+    # def addWidgets(self, master):
+
+
 class addButtons():
     def __init__(self, master, text, width, rely,
                  relx=0.5, height=1, command=None):
@@ -71,26 +87,21 @@ def saveFile():
 
 
 def loginButtonClicked():
-    global root
-    global loginWindow
-    loginWindow = tk.Toplevel(root)
-    loginWindow.grab_set()
-    loginWindow.title('Login')
-    loginWindow.geometry('400x200')
-    loginWindow.resizable(0, 0)
-    labelUser = tk.Label(loginWindow, text='Username',
+    loginWindow = TopLevel('Login', '400x200')
+    loginWindow.createTopLevel(root)
+    labelUser = tk.Label(topLevel, text='Username',
                          font=('Calibre', '14'))
     labelUser.place(relx=0.25, rely=0.3, anchor=tk.CENTER)
-    labelPass = tk.Label(loginWindow, text='Password',
+    labelPass = tk.Label(topLevel, text='Password',
                          font=('Calibre', '14'))
     labelPass.place(relx=0.25, rely=0.5, anchor=tk.CENTER)
-    usernameInput = tk.Entry(loginWindow)
+    usernameInput = tk.Entry(topLevel)
     usernameInput.place(relx=0.65, rely=0.3, anchor=tk.CENTER)
-    passwordInput = tk.Entry(loginWindow, show='*')
+    passwordInput = tk.Entry(topLevel, show='*')
     passwordInput.place(relx=0.65, rely=0.5, anchor=tk.CENTER)
     inputEntries.append(usernameInput)
     inputEntries.append(passwordInput)
-    Loginbtn = addButtons(loginWindow, 'Login', 10, 0.75,
+    Loginbtn = addButtons(topLevel, 'Login', 10, 0.75,
                           command=getLoginInput)
     Loginbtn.createButton()
 
@@ -106,7 +117,6 @@ def getLoginInput():
 
 def login():
     global loggedIn
-    global loginWindow
     fileData = json.load(open('loginData.json', 'r'))
     allUsers = fileData['userLoginData']
     for user in allUsers:
@@ -122,36 +132,28 @@ def login():
             except Exception:
                 pass
             loggedIn = True
-            loginWindow.destroy()
+            topLevel.destroy()
             loggedInPopUp()
         else:
             failedLabel = tk.Label(
-                loginWindow, text='Incorrect username or password.')
+                topLevel, text='Incorrect username or password.')
             failedLabel.place(relx=0.5, rely=0.15, anchor=tk.CENTER)
 
 
 def loggedInPopUp():
-    global root
-    loggedInPopUp = tk.Toplevel(root)
-    loggedInPopUp.title('Logged In')
-    loggedInPopUp.geometry('300x100')
-    loggedInPopUp.resizable(0, 0)
+    loggedInPopUp = TopLevel('Logged In', '300x100')
+    loggedInPopUp.createTopLevel(root)
     loggedInLabel = tk.Label(
-        loggedInPopUp, text='You have successfully been logged in.')
+        topLevel, text='You have successfully been logged in.')
     loggedInLabel.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-    okBtn = addButtons(loggedInPopUp, 'OK', 3, 0.7,
+    okBtn = addButtons(topLevel, 'OK', 3, 0.7,
                        command=lambda: Quit(root))
     okBtn.createButton()
 
 
 def signinButtonClicked():
-    global root
-    global signupWindow
-    signupWindow = tk.Toplevel(root)
-    signupWindow.grab_set()
-    signupWindow.title('Sign Up')
-    signupWindow.geometry('400x200')
-    signupWindow.resizable(0, 0)
+    signupWindow = TopLevel('Sign Up', '400x200')
+    signupWindow.createTopLevel(root)
 
 
 def continueWithoutSignIn():
@@ -165,18 +167,16 @@ def Quit(window):
 
 
 def confirmDialog(window):
-    quitDialog = tk.Toplevel(window)
-    quitDialog.grab_set()
-    quitDialog.title('Quit Confirmation')
-    quitDialog.geometry('300x90')
+    quitDialog = TopLevel('Quit Confirmation', '300x90')
+    quitDialog.createTopLevel(window)
 
     def cancelQuit():
-        quitDialog.destroy()
-    askLabel = tk.Label(quitDialog, text='Are you sure you want to exit?')
+        topLevel.destroy()
+    askLabel = tk.Label(topLevel, text='Are you sure you want to exit?')
     askLabel.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
-    nobtn = tk.Button(quitDialog, text='Cancel', width=7, command=cancelQuit)
+    nobtn = tk.Button(topLevel, text='Cancel', width=7, command=cancelQuit)
     nobtn.place(relx=0.35, rely=0.65, anchor=tk.CENTER)
-    yesbtn = tk.Button(quitDialog, text='Exit', width=7,
+    yesbtn = tk.Button(topLevel, text='Exit', width=7,
                        command=lambda: Quit(root))
     yesbtn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
