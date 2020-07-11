@@ -6,10 +6,10 @@ import time
 
 
 # Lists & Variables:
-inputEntries = []
-loginInfo = {}
-compLoginInfo = {}
-loggedIn = False
+input_entries = []
+login_info = {}
+comparitive_info = {}
+logged_in = False
 guest = False
 
 
@@ -19,18 +19,18 @@ class TopLevel():
         self.title = title
         self.geometry = geometry
 
-    def createTopLevel(self, master):
-        global topLevel
-        topLevel = tk.Toplevel(master)
-        topLevel.grab_set()
-        topLevel.title(self.title)
-        topLevel.geometry(self.geometry)
-        topLevel.resizable(False, False)
+    def create_toplevel(self, master):
+        global top_level
+        top_level = tk.Toplevel(master)
+        top_level.grab_set()
+        top_level.title(self.title)
+        top_level.geometry(self.geometry)
+        top_level.resizable(False, False)
 
     # def addWidgets(self, master):
 
 
-class addButtons():
+class AddButtons():
     def __init__(self, master, text, width, rely,
                  relx=0.5, height=1, command=None):
         self.master = master
@@ -41,7 +41,7 @@ class addButtons():
         self.relx = relx
         self.command = command
 
-    def createButton(self):
+    def create_buttons(self):
         button = tk.Button(self.master, text=self.text,
                            width=self.width, height=self.height,
                            bg='#e3d6d6', command=self.command)
@@ -49,163 +49,164 @@ class addButtons():
 
 
 # Functions:
-def startRootWindow(windowWidth=None, windowHeight=None):
+def start_root_window(window_width=None, window_height=None):
     global root
     root = tk.Tk()
     root.title('The Weather Forecast App')
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = (root.winfo_screenheight() - 25)
-    if windowWidth is None and windowHeight is None:
-        root.geometry('{}x{}'.format(screenWidth, screenHeight))
+    screen_width = root.winfo_screenwidth()
+    screen_width = (root.winfo_screenheight() - 25)
+    if window_width is None and window_height is None:
+        root.geometry('{}x{}'.format(screen_width, screen_width))
     else:
-        root.geometry('{}x{}'.format(windowWidth, windowHeight))
+        root.geometry('{}x{}'.format(window_width, window_height))
     root.resizable(False, False)
 
 
-def createCanvas():
+def create_canvas():
     global root
-    global bgCanvas
-    global bgImage
-    bgImage = ImageTk.PhotoImage(Image.open('CloudsBg.gif'))
-    bgCanvas = tk.Canvas(root, bg='#15adc2')
-    bgCanvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
-    bgCanvas.create_image(450, 250, image=bgImage)
+    global bg_canvas
+    global bg_image
+    bg_image = ImageTk.PhotoImage(Image.open('CloudsBg.gif'))
+    bg_canvas = tk.Canvas(root, bg='#15adc2')
+    bg_canvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
+    bg_canvas.create_image(450, 250, image=bg_image)
 
 
-def writeJson(data, filename='loginData.json'):
+def write_json(data, filename='loginData.json'):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=4)
 
 
-def saveFile():
-    global compLoginInfo
-    with open('loginData.json') as jsonFile:
-        data = json.load(jsonFile)
+def save_file():
+    global comparitive_info
+    with open('loginData.json') as json_file:
+        data = json.load(json_file)
         temp = data['userLoginData']
-        temp.append(loginInfo)
-    writeJson(data)
+        temp.append(login_info)
+    write_json(data)
 
 
-def loginButtonClicked():
-    loginWindow = TopLevel('Login', '400x200')
-    loginWindow.createTopLevel(root)
-    labelUser = tk.Label(topLevel, text='Username',
-                         font=('Calibre', '14'))
-    labelUser.place(relx=0.25, rely=0.3, anchor=tk.CENTER)
-    labelPass = tk.Label(topLevel, text='Password',
-                         font=('Calibre', '14'))
-    labelPass.place(relx=0.25, rely=0.5, anchor=tk.CENTER)
-    usernameInput = tk.Entry(topLevel)
-    usernameInput.place(relx=0.65, rely=0.3, anchor=tk.CENTER)
-    passwordInput = tk.Entry(topLevel, show='*')
-    passwordInput.place(relx=0.65, rely=0.5, anchor=tk.CENTER)
-    inputEntries.append(usernameInput)
-    inputEntries.append(passwordInput)
-    Loginbtn = addButtons(topLevel, 'Login', 10, 0.75,
-                          command=getLoginInput)
-    Loginbtn.createButton()
+def login_clicked():
+    login_window = TopLevel('Login', '400x200')
+    login_window.create_toplevel(root)
+    label_user = tk.Label(top_level, text='Username',
+                          font=('Calibre', '14'))
+    label_user.place(relx=0.25, rely=0.3, anchor=tk.CENTER)
+    label_pass = tk.Label(top_level, text='Password',
+                          font=('Calibre', '14'))
+    label_pass.place(relx=0.25, rely=0.5, anchor=tk.CENTER)
+    username_input = tk.Entry(top_level)
+    username_input.place(relx=0.65, rely=0.3, anchor=tk.CENTER)
+    password_input = tk.Entry(top_level, show='*')
+    password_input.place(relx=0.65, rely=0.5, anchor=tk.CENTER)
+    input_entries.append(username_input)
+    input_entries.append(password_input)
+    login_btn = AddButtons(top_level, 'Login', 10, 0.75,
+                           command=get_login_input)
+    login_btn.create_buttons()
 
 
-def getLoginInput():
-    global compLoginInfo
-    username = inputEntries[0].get()
-    password = inputEntries[1].get()
-    compLoginInfo.update(Username=username, Password=password)
-    print(compLoginInfo)
+def get_login_input():
+    global comparitive_info
+    username = input_entries[0].get()
+    password = input_entries[1].get()
+    comparitive_info.update(Username=username, Password=password)
+    print(comparitive_info)
     login()
 
 
 def login():
-    global loggedIn
-    fileData = json.load(open('loginData.json', 'r'))
-    allUsers = fileData['userLoginData']
-    for user in allUsers:
-        realUsername = user.get('Username')
-        realPassword = user.get('Password')
-        compUsername = compLoginInfo.get('Username')
-        compUsername = compUsername.lower()
-        compPassword = compLoginInfo.get('Password')
-        if realUsername == compUsername and realPassword == compPassword:
-            global failedLabel
+    global logged_in
+    file_data = json.load(open('loginData.json', 'r'))
+    all_users = file_data['userLoginData']
+    for user in all_users:
+        real_username = user.get('Username')
+        real_password = user.get('Password')
+        comp_username = comparitive_info.get('Username')
+        comp_username = comp_username.lower()
+        comp_password = comparitive_info.get('Password')
+        if real_username == comp_username and real_password == comp_password:
+            global incorrect_label
             try:
-                failedLabel.destroy()
+                quit(incorrect_label)
             except Exception:
                 pass
-            loggedIn = True
+            logged_in = True
             completeLabel = tk.Label(
-                topLevel, text='You have been logged in.', fg='green')
+                top_level, text='You have been logged in.', fg='green')
             completeLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
-            topLevel.update_idletasks()
+            top_level.update_idletasks()
             time.sleep(1.5)
-            Quit(root)
+            quit(root)
         else:
-            failedLabel = tk.Label(
-                topLevel, text='Incorrect username or password.', fg='red')
-            failedLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
+            incorrect_label = tk.Label(
+                top_level, text='Incorrect username or password.', fg='red')
+            incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
 
 
-def signinButtonClicked():
-    signupWindow = TopLevel('Sign Up', '400x200')
-    signupWindow.createTopLevel(root)
+def signin_clicked():
+    signup_window = TopLevel('Sign Up', '400x200')
+    signup_window.create_toplevel(root)
 
 
-def continueWithoutSignIn():
+def guest_login():
     global guest
-    Quit(root)
+    quit(root)
     guest = True
 
 
-def Quit(window):
+def quit(window):
     window.destroy()
 
 
-def confirmDialog(window):
-    quitDialog = TopLevel('Quit Confirmation', '300x90')
-    quitDialog.createTopLevel(window)
+def confirm_dialog(window):
+    quit_dialog = TopLevel('quit Confirmation', '300x90')
+    quit_dialog.create_toplevel(window)
 
-    def cancelQuit():
-        topLevel.destroy()
-    askLabel = tk.Label(topLevel, text='Are you sure you want to exit?')
-    askLabel.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
-    nobtn = tk.Button(topLevel, text='Cancel', width=7, command=cancelQuit)
-    nobtn.place(relx=0.35, rely=0.65, anchor=tk.CENTER)
-    yesbtn = tk.Button(topLevel, text='Exit', width=7,
-                       command=lambda: Quit(root))
-    yesbtn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
+    def cancel_quit():
+        quit(top_level)
+    ask_label = tk.Label(top_level, text='Are you sure you want to exit?')
+    ask_label.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
+    no_btn = tk.Button(top_level, text='Cancel', width=7, command=cancel_quit)
+    no_btn.place(relx=0.35, rely=0.65, anchor=tk.CENTER)
+    yes_btn = tk.Button(top_level, text='Exit', width=7,
+                        command=lambda: quit(root))
+    yes_btn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
-def primaryWindow():
-    createCanvas()
-    bgCanvas.create_text(675, 200, anchor=tk.CENTER, font=(
+def primary_window():
+    create_canvas()
+    bg_canvas.create_text(675, 200, anchor=tk.CENTER, font=(
         'Calibre', '28'), text='Weather Forecast - Login')
 
-    btn1 = addButtons(bgCanvas, 'Login', 20, 0.45, command=loginButtonClicked)
-    btn2 = addButtons(bgCanvas, 'Sign Up', 20, 0.5,
-                      command=signinButtonClicked)
-    btn3 = addButtons(bgCanvas, 'Continue Without Sign-In',
-                      20, 0.55, command=continueWithoutSignIn)
-    btn4 = addButtons(bgCanvas, 'Quit', 10, 0.977,
-                      relx=0.96, command=lambda: confirmDialog(root))
-    btn1.createButton()
-    btn2.createButton()
-    btn3.createButton()
-    btn4.createButton()
+    btn1 = AddButtons(bg_canvas, 'Login', 20, 0.45,
+                      command=login_clicked)
+    btn2 = AddButtons(bg_canvas, 'Sign Up', 20, 0.5,
+                      command=signinclicked)
+    btn3 = AddButtons(bg_canvas, 'Continue Without Sign-In',
+                      20, 0.55, command=guest_login)
+    btn4 = AddButtons(bg_canvas, 'quit', 10, 0.977,
+                      relx=0.96, command=lambda: confirm_dialog(root))
+    btn1.create_buttons()
+    btn2.create_buttons()
+    btn3.create_buttons()
+    btn4.create_buttons()
 
     root.mainloop()
 
 
-def mainInterface():
-    createCanvas()
+def main_interface():
+    create_canvas()
 
     root.mainloop()
 
 
 # Initial Log-In Window:
-startRootWindow()
-primaryWindow()
+start_root_window()
+primary_window()
 
 # Main Interface:
-if loggedIn is True or guest is True:
+if logged_in is True or guest is True:
     time.sleep(1)
-    startRootWindow()
-    mainInterface()
+    start_root_window()
+    main_interface()
