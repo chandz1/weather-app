@@ -54,9 +54,9 @@ def start_root_window(window_width=None, window_height=None):
     root = tk.Tk()
     root.title('The Weather Forecast App')
     screen_width = root.winfo_screenwidth()
-    screen_width = (root.winfo_screenheight() - 25)
+    screen_height = (root.winfo_screenheight() - 25)
     if window_width is None and window_height is None:
-        root.geometry('{}x{}'.format(screen_width, screen_width))
+        root.geometry('{}x{}'.format(screen_width, screen_height))
     else:
         root.geometry('{}x{}'.format(window_width, window_height))
     root.resizable(False, False)
@@ -151,6 +151,7 @@ def signin_clicked():
 
 def guest_login():
     global guest
+    time.sleep(0.25)
     quit(root)
     guest = True
 
@@ -160,7 +161,7 @@ def quit(window):
 
 
 def confirm_dialog(window):
-    quit_dialog = TopLevel('quit Confirmation', '300x90')
+    quit_dialog = TopLevel('Quit Confirmation', '300x90')
     quit_dialog.create_toplevel(window)
 
     def cancel_quit():
@@ -182,10 +183,10 @@ def primary_window():
     btn1 = AddButtons(bg_canvas, 'Login', 20, 0.45,
                       command=login_clicked)
     btn2 = AddButtons(bg_canvas, 'Sign Up', 20, 0.5,
-                      command=signinclicked)
+                      command=signin_clicked)
     btn3 = AddButtons(bg_canvas, 'Continue Without Sign-In',
                       20, 0.55, command=guest_login)
-    btn4 = AddButtons(bg_canvas, 'quit', 10, 0.977,
+    btn4 = AddButtons(bg_canvas, 'Quit', 10, 0.977,
                       relx=0.96, command=lambda: confirm_dialog(root))
     btn1.create_buttons()
     btn2.create_buttons()
