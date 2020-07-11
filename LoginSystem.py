@@ -25,7 +25,7 @@ class TopLevel():
         topLevel.grab_set()
         topLevel.title(self.title)
         topLevel.geometry(self.geometry)
-        topLevel.resizable(0, 0)
+        topLevel.resizable(False, False)
 
     # def addWidgets(self, master):
 
@@ -59,7 +59,7 @@ def startRootWindow(windowWidth=None, windowHeight=None):
         root.geometry('{}x{}'.format(screenWidth, screenHeight))
     else:
         root.geometry('{}x{}'.format(windowWidth, windowHeight))
-    root.resizable(0, 0)
+    root.resizable(False, False)
 
 
 def createCanvas():
@@ -132,23 +132,16 @@ def login():
             except Exception:
                 pass
             loggedIn = True
-            topLevel.destroy()
-            loggedInPopUp()
+            completeLabel = tk.Label(
+                topLevel, text='You have been logged in.', fg='green')
+            completeLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
+            topLevel.update_idletasks()
+            time.sleep(1.5)
+            Quit(root)
         else:
             failedLabel = tk.Label(
-                topLevel, text='Incorrect username or password.')
-            failedLabel.place(relx=0.5, rely=0.15, anchor=tk.CENTER)
-
-
-def loggedInPopUp():
-    loggedInPopUp = TopLevel('Logged In', '300x100')
-    loggedInPopUp.createTopLevel(root)
-    loggedInLabel = tk.Label(
-        topLevel, text='You have successfully been logged in.')
-    loggedInLabel.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
-    okBtn = addButtons(topLevel, 'OK', 3, 0.7,
-                       command=lambda: Quit(root))
-    okBtn.createButton()
+                topLevel, text='Incorrect username or password.', fg='red')
+            failedLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
 
 
 def signinButtonClicked():
@@ -213,6 +206,6 @@ primaryWindow()
 
 # Main Interface:
 if loggedIn is True or guest is True:
-    time.sleep(2)
+    time.sleep(1)
     startRootWindow()
     mainInterface()
