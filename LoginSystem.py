@@ -113,6 +113,7 @@ def login():
         realUsername = user.get('Username')
         realPassword = user.get('Password')
         compUsername = compLoginInfo.get('Username')
+        compUsername = compUsername.lower()
         compPassword = compLoginInfo.get('Password')
         if realUsername == compUsername and realPassword == compPassword:
             global failedLabel
@@ -141,6 +142,16 @@ def loggedInPopUp():
     okBtn = addButtons(loggedInPopUp, 'OK', 3, 0.7,
                        command=lambda: Quit(root))
     okBtn.createButton()
+
+
+def signinButtonClicked():
+    global root
+    global signupWindow
+    signupWindow = tk.Toplevel(root)
+    signupWindow.grab_set()
+    signupWindow.title('Sign Up')
+    signupWindow.geometry('400x200')
+    signupWindow.resizable(0, 0)
 
 
 def continueWithoutSignIn():
@@ -176,7 +187,8 @@ def primaryWindow():
         'Calibre', '28'), text='Weather Forecast - Login')
 
     btn1 = addButtons(bgCanvas, 'Login', 20, 0.45, command=loginButtonClicked)
-    btn2 = addButtons(bgCanvas, 'Sign Up', 20, 0.5)
+    btn2 = addButtons(bgCanvas, 'Sign Up', 20, 0.5,
+                      command=signinButtonClicked)
     btn3 = addButtons(bgCanvas, 'Continue Without Sign-In',
                       20, 0.55, command=continueWithoutSignIn)
     btn4 = addButtons(bgCanvas, 'Quit', 10, 0.977,
