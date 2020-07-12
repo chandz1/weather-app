@@ -161,9 +161,13 @@ def forgot_passkey():
     reset_window.resizable(False, False)
 
 
-def signin_clicked():
+def signup_clicked():
     signup_window = TopLevel('Sign Up', '400x300')
     signup_window.create_toplevel(root)
+    username_label= tk.Label(top_level, text="Username", font=('Calibre','15'))
+    username_label.place(relx=0.25,rely=0.15,anchor=tk.CENTER)
+    email_label= tk.Label(top_level, text="Email", font=('Calibre','15'))
+    email_label.place(relx=0.25,rely=0.25,anchor=tk.CENTER)
 
 
 def guest_login():
@@ -201,7 +205,7 @@ def primary_window():
     btn1 = AddButtons(bg_canvas, 'Login', 20, 0.45,
                       command=login_clicked)
     btn2 = AddButtons(bg_canvas, 'Sign Up', 20, 0.5,
-                      command=signin_clicked)
+                      command=signup_clicked)
     btn3 = AddButtons(bg_canvas, 'Continue Without Sign-In',
                       20, 0.55, command=guest_login)
     btn4 = AddButtons(bg_canvas, 'Quit', 10, 0.977,
