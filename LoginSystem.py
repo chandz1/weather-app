@@ -32,7 +32,7 @@ class TopLevel():
 
 class AddButtons():
     def __init__(self, master, text, width, rely,
-                 relx=0.5, height=1, command=None):
+                 command=None, relx=0.5, height=1, font=None):
         self.master = master
         self.text = text
         self.width = width
@@ -40,19 +40,22 @@ class AddButtons():
         self.rely = rely
         self.relx = relx
         self.command = command
+        self.font = font
 
     def create_buttons(self):
         button = tk.Button(self.master, text=self.text,
                            width=self.width, height=self.height,
-                           bg='#e3d6d6', command=self.command)
+                           bg='#e3d6d6', command=self.command,
+                           font=self.font)
         button.place(relx=self.relx, rely=self.rely, anchor=tk.CENTER)
 
 
 # Functions:
-def start_root_window(window_width=None, window_height=None):
+def start_root_window(window_width=None, window_height=None,
+                      window_title='The Weather Forecast App'):
     global root
     root = tk.Tk()
-    root.title('The Weather Forecast App')
+    root.title(window_title)
     screen_width = root.winfo_screenwidth()
     screen_height = (root.winfo_screenheight() - 25)
     if window_width is None and window_height is None:
@@ -87,22 +90,27 @@ def save_file():
 
 
 def login_clicked():
-    login_window = TopLevel('Login', '400x200')
+    global login_window
+    login_window = TopLevel('Login', '400x175')
     login_window.create_toplevel(root)
     label_user = tk.Label(top_level, text='Username',
                           font=('Calibre', '14'))
-    label_user.place(relx=0.25, rely=0.3, anchor=tk.CENTER)
+    label_user.place(relx=0.25, rely=0.25, anchor=tk.CENTER)
     label_pass = tk.Label(top_level, text='Password',
                           font=('Calibre', '14'))
-    label_pass.place(relx=0.25, rely=0.5, anchor=tk.CENTER)
+    label_pass.place(relx=0.25, rely=0.45, anchor=tk.CENTER)
     username_input = tk.Entry(top_level)
-    username_input.place(relx=0.65, rely=0.3, anchor=tk.CENTER)
+    username_input.place(relx=0.65, rely=0.25, anchor=tk.CENTER)
     password_input = tk.Entry(top_level, show='*')
-    password_input.place(relx=0.65, rely=0.5, anchor=tk.CENTER)
+    password_input.place(relx=0.65, rely=0.45, anchor=tk.CENTER)
+    input_entries.clear()
     input_entries.append(username_input)
     input_entries.append(password_input)
-    login_btn = AddButtons(top_level, 'Login', 10, 0.75,
-                           command=get_login_input)
+    forgot_password = AddButtons(
+        top_level, 'Forgot password?', 12, 0.7, forgot_passkey, 0.25)
+    forgot_password.create_buttons()
+    login_btn = AddButtons(top_level, 'Login', 10, 0.7,
+                           get_login_input, 0.65)
     login_btn.create_buttons()
 
 
@@ -144,8 +152,16 @@ def login():
             incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
 
 
+def forgot_passkey():
+    reset_window = tk.Toplevel(root)
+    reset_window.grab_set()
+    reset_window.title('Reset Password')
+    reset_window.geometry('300x200')
+    reset_window.resizable(False, False)
+
+
 def signin_clicked():
-    signup_window = TopLevel('Sign Up', '400x200')
+    signup_window = TopLevel('Sign Up', '400x300')
     signup_window.create_toplevel(root)
 
 
@@ -156,8 +172,9 @@ def guest_login():
     guest = True
 
 
-def quit(window):
-    window.destroy()
+def quit(*window):
+    for instance in window:
+        instance.destroy()
 
 
 def confirm_dialog(window):
@@ -187,7 +204,7 @@ def primary_window():
     btn3 = AddButtons(bg_canvas, 'Continue Without Sign-In',
                       20, 0.55, command=guest_login)
     btn4 = AddButtons(bg_canvas, 'Quit', 10, 0.977,
-                      relx=0.96, command=lambda: confirm_dialog(root))
+                      lambda: confirm_dialog(root), 0.96)
     btn1.create_buttons()
     btn2.create_buttons()
     btn3.create_buttons()
