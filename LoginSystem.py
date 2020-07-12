@@ -56,12 +56,13 @@ def start_root_window(window_width=None, window_height=None,
     global root
     root = tk.Tk()
     root.title(window_title)
-    screen_width = root.winfo_screenwidth()
-    screen_height = (root.winfo_screenheight() - 25)
-    if window_width is None and window_height is None:
-        root.geometry('{}x{}'.format(screen_width, screen_height))
-    else:
-        root.geometry('{}x{}'.format(window_width, window_height))
+    root.attributes('-fullscreen', True)
+    # screen_width = root.winfo_screenwidth()
+    # screen_height = (root.winfo_screenheight() - 25)
+    # if window_width is None and window_height is None:
+    #     root.geometry('{}x{}'.format(screen_width, screen_height))
+    # else:
+    #     root.geometry('{}x{}'.format(window_width, window_height))
     root.resizable(False, False)
 
 
@@ -136,7 +137,7 @@ def login():
         if real_username == comp_username and real_password == comp_password:
             global incorrect_label
             try:
-                quit(incorrect_label)
+                incorrect_label.destroy()
             except Exception:
                 pass
             logged_in = True
