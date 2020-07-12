@@ -56,7 +56,7 @@ def start_root_window(window_width=None, window_height=None,
     global root
     root = tk.Tk()
     root.title(window_title)
-    root.attributes('-fullscreen', True)
+    root.attributes('-zoomed', True)
     # screen_width = root.winfo_screenwidth()
     # screen_height = (root.winfo_screenheight() - 25)
     # if window_width is None and window_height is None:
@@ -161,13 +161,44 @@ def forgot_passkey():
     reset_window.resizable(False, False)
 
 
-def signup_clicked():
-    signup_window = TopLevel('Sign Up', '400x300')
+def signup():
+    signup_window = TopLevel('Sign Up', '400x325')
     signup_window.create_toplevel(root)
-    username_label= tk.Label(top_level, text="Username", font=('Calibre','15'))
-    username_label.place(relx=0.25,rely=0.15,anchor=tk.CENTER)
-    email_label= tk.Label(top_level, text="Email", font=('Calibre','15'))
-    email_label.place(relx=0.25,rely=0.25,anchor=tk.CENTER)
+
+    username_label = tk.Label(
+        top_level, text="Username:", font=('Calibre', '12'))
+    username_label.place(relx=0.175, rely=0.075, anchor=tk.CENTER)
+
+    new_user_input = tk.Entry(top_level)
+    new_user_input.place(relx=0.5, rely=0.155, anchor=tk.CENTER, width=350)
+
+    email_label = tk.Label(top_level, text="Email:", font=('Calibre', '12'))
+    email_label.place(relx=0.12, rely=0.23, anchor=tk.CENTER)
+
+    new_email_input = tk.Entry(top_level)
+    new_email_input.place(relx=0.5, rely=0.305, anchor=tk.CENTER, width=350)
+
+    password_label = tk.Label(
+        top_level, text="Password:", font=('Calibre', '12'))
+    password_label.place(relx=0.16, rely=0.38, anchor=tk.CENTER)
+
+    new_user_input = tk.Entry(top_level)
+    new_user_input.place(relx=0.5, rely=0.455, anchor=tk.CENTER, width=350)
+
+    retype_pass_label = tk.Label(
+        top_level, text="Confirm Password:", font=('Calibre', '12'))
+    retype_pass_label.place(relx=0.25, rely=0.53, anchor=tk.CENTER)
+
+    new_user_input = tk.Entry(top_level)
+    new_user_input.place(relx=0.5, rely=0.605, anchor=tk.CENTER, width=350)
+
+    signup_button = AddButtons(
+        top_level, 'Create an account', 20, 0.8, signup_clicked)
+    signup_button.create_buttons()
+
+
+def signup_clicked():
+    pass
 
 
 def guest_login():
@@ -205,7 +236,7 @@ def primary_window():
     btn1 = AddButtons(bg_canvas, 'Login', 20, 0.45,
                       command=login_clicked)
     btn2 = AddButtons(bg_canvas, 'Sign Up', 20, 0.5,
-                      command=signup_clicked)
+                      command=signup)
     btn3 = AddButtons(bg_canvas, 'Continue Without Sign-In',
                       20, 0.55, command=guest_login)
     btn4 = AddButtons(bg_canvas, 'Quit', 10, 0.977,
