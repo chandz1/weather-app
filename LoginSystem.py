@@ -1,14 +1,20 @@
 # Imports:
 import tkinter as tk
+from tkinter import messagebox
 from PIL import Image, ImageTk
+import smtplib
+import SendMail
 import json
 import time
 
 
 # Lists & Variables:
-input_entries = []
+login_entries = []
+signup_entries = []
 login_info = {}
 comparitive_info = {}
+signup_comp = {}
+pass_check = {}
 logged_in = False
 guest = False
 
@@ -51,6 +57,11 @@ class AddButtons():
 
 
 # Functions:
+def quit(*window):
+    for instance in window:
+        instance.destroy()
+
+
 def start_root_window(window_width=None, window_height=None,
                       window_title='The Weather Forecast App'):
     global root
@@ -94,22 +105,29 @@ def login_clicked():
     global login_window
     login_window = TopLevel('Login', '400x175')
     login_window.create_toplevel(root)
+
     label_user = tk.Label(top_level, text='Username',
                           font=('Calibre', '14'))
     label_user.place(relx=0.25, rely=0.25, anchor=tk.CENTER)
+
     label_pass = tk.Label(top_level, text='Password',
                           font=('Calibre', '14'))
     label_pass.place(relx=0.25, rely=0.45, anchor=tk.CENTER)
+
     username_input = tk.Entry(top_level)
     username_input.place(relx=0.65, rely=0.25, anchor=tk.CENTER)
+
     password_input = tk.Entry(top_level, show='*')
     password_input.place(relx=0.65, rely=0.45, anchor=tk.CENTER)
-    input_entries.clear()
-    input_entries.append(username_input)
-    input_entries.append(password_input)
+
+    login_entries.clear()
+    login_entries.append(username_input)
+    login_entries.append(password_input)
+
     forgot_password = AddButtons(
         top_level, 'Forgot password?', 12, 0.7, forgot_passkey, 0.25)
     forgot_password.create_buttons()
+
     login_btn = AddButtons(top_level, 'Login', 10, 0.7,
                            get_login_input, 0.65)
     login_btn.create_buttons()
@@ -117,8 +135,8 @@ def login_clicked():
 
 def get_login_input():
     global comparitive_info
-    username = input_entries[0].get()
-    password = input_entries[1].get()
+    username = login_entries[0].get()
+    password = login_entries[1].get()
     comparitive_info.update(Username=username, Password=password)
     print(comparitive_info)
     login()
@@ -142,14 +160,14 @@ def login():
                 pass
             logged_in = True
             completeLabel = tk.Label(
-                top_level, text='You have been logged in.', fg='green')
+                top_level, text='You Have Been Logged In.', fg='green')
             completeLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
             top_level.update_idletasks()
             time.sleep(1.5)
             quit(root)
         else:
             incorrect_label = tk.Label(
-                top_level, text='Incorrect username or password.', fg='red')
+                top_level, text='Incorrect Username Or Password.', fg='red')
             incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
 
 
@@ -182,23 +200,111 @@ def signup():
         top_level, text="Password:", font=('Calibre', '12'))
     password_label.place(relx=0.16, rely=0.38, anchor=tk.CENTER)
 
-    new_user_input = tk.Entry(top_level)
-    new_user_input.place(relx=0.5, rely=0.455, anchor=tk.CENTER, width=350)
+    new_passkey_input = tk.Entry(top_level)
+    new_passkey_input.place(relx=0.5, rely=0.455, anchor=tk.CENTER, width=350)
 
     retype_pass_label = tk.Label(
         top_level, text="Confirm Password:", font=('Calibre', '12'))
     retype_pass_label.place(relx=0.25, rely=0.53, anchor=tk.CENTER)
 
-    new_user_input = tk.Entry(top_level)
-    new_user_input.place(relx=0.5, rely=0.605, anchor=tk.CENTER, width=350)
+    retype_pass_input = tk.Entry(top_level)
+    retype_pass_input.place(relx=0.5, rely=0.605, anchor=tk.CENTER, width=350)
+
+    signup_entries.clear()
+    signup_entries.append(new_user_input)
+    signup_entries.append(new_email_input)
+    signup_entries.append(new_passkey_input)
+    signup_entries.append(retype_pass_input)
 
     signup_button = AddButtons(
-        top_level, 'Create an account', 20, 0.8, signup_clicked)
+        top_level, 'Create an account', 20, 0.8, get_signup_input)
     signup_button.create_buttons()
 
 
+def get_signup_input():
+    global signup_comp
+    username = signup_entries[0].get()
+    mailid = signup_entries[1].get()
+    check_pass = signup_entries[2].get()
+    confirm_pass = signup_entries[3].get()
+    signup_comp.update(Username=username, MailId=mailid)
+    pass_check.update(Password=check_pass, ConfirmPassword=confirm_pass)
+    print(signup_comp)
+    print(pass_check)
+    signup_clicked()
+
+
 def signup_clicked():
-    pass
+    global no_mailid
+    global bad_mailid
+    global same_mailid
+    login_data = json.load(open('loginData.json', 'r'))
+    all_users = login_data['userLoginData']
+    for user in all_users:
+        existing_username = user.get('Username')
+        existing_mail = user.get('MailId')
+        comp_username = signup_comp.get('Username')
+        comp_username = comp_username.lower()
+        comp_mailid = signup_comp.get('MailId')
+        comp_mailid = comp_mailid.lower()
+        comp_pass = pass_check.get('Password')
+        comp_confirm_pass = pass_check.get('ConfirmPassword')
+        if comp_mailid != existing_mail:
+            if comp_mailid != '':
+                if comp_username != existing_username:
+                    if comp_pass == comp_confirm_pass:
+                        try:
+                            SendMail.new_mail = comp_mailid
+                            message = SendMail.mail_sent_message
+                            SendMail.sendMail()
+
+                            verification_window = TopLevel(
+                                'Enter Verification Code', '300x200')
+                            verification_window.create_toplevel(root)
+
+                            mail_sent = tk.Label(
+                                top_level, text=message, font=('Calibre', '12'))
+                            mail_sent.place(relx=0.5, rely=0.3,
+                                            anchor=tk.CENTER)
+
+                        except smtplib.SMTPRecipientsRefused:
+                            error_exception()
+                            bad_mailid = tk.Label(
+                                top_level, text='Invalid MailId!', font=('Calibre', '10'), fg='red')
+                            bad_mailid.place(
+                                relx=0.78, rely=0.235, anchor=tk.CENTER)
+                            # print('invalid MailId')
+
+                        except smtplib.socket.gaierror:
+                            messagebox.showwarning(
+                                title='Internet Connection Error',
+                                message='Check You Internet Connection.')
+                            # print('Check your internet connection.')
+            else:
+                error_exception()
+                no_mailid = tk.Label(top_level, text='Enter a Mail-Id!',
+                                     font=('Calibre', '10'), fg='red')
+                no_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
+        else:
+            error_exception()
+            same_mailid = tk.Label(top_level, text='Mail-Id in use!',
+                                   font=('Calibre', '10'), fg='red')
+            same_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
+
+
+def error_exception():
+    try:
+        bad_mailid.destroy()
+    except Exception:
+        pass
+    try:
+        same_mailid.destroy()
+    except Exception:
+        pass
+    try:
+        no_mailid.destroy()
+    except Exception:
+        pass
 
 
 def guest_login():
@@ -206,11 +312,6 @@ def guest_login():
     time.sleep(0.25)
     quit(root)
     guest = True
-
-
-def quit(*window):
-    for instance in window:
-        instance.destroy()
 
 
 def confirm_dialog(window):
