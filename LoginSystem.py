@@ -67,7 +67,7 @@ def start_root_window(window_width=None, window_height=None,
     global root
     root = tk.Tk()
     root.title(window_title)
-    root.attributes('-zoomed', True)
+    root.attributes('-fullscreen', True)
     # screen_width = root.winfo_screenwidth()
     # screen_height = (root.winfo_screenheight() - 25)
     # if window_width is None and window_height is None:
@@ -352,7 +352,11 @@ def primary_window():
 
 def main_interface():
     create_canvas()
-
+    logo=ImageTk.PhotoImage(Image.open("rsz_logo_size.jpg"))
+    logo_button=tk.Button(root, image=logo)
+    logo_button.place(relx=0.1, rely=0.05,anchor=tk.CENTER)
+    title_bar=tk.Button(root, text="Weather Forecast", font=("Calibre","18"),width=75)
+    title_bar.place(relx=0.45, rely=0.02, anchor=tk.CENTER)
     root.mainloop()
 
 
