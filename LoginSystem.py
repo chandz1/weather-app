@@ -359,11 +359,10 @@ def main_interface():
     # title_bar.place(relx=0.397, rely=0.029, anchor=tk.CENTER)
     # search_bar=tk.Entry(font=("Calibre","25"), width=15)
     # search_bar.place(relx=0.999999, rely=0.002, anchor=tk.NE)
-    title_bar=tk.Canvas(bg_canvas, width=300, height=100)
+    screen_width = root.winfo_screenwidth()
+    screen_height = (root.winfo_screenheight() // 10)
+    title_bar = tk.Canvas(bg_canvas, width=screen_width, height=screen_height)
     title_bar.pack(side=tk.TOP)
-
-
-
 
     root.mainloop()
 
