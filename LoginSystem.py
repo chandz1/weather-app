@@ -360,7 +360,7 @@ def main_interface():
     # search_bar=tk.Entry(font=("Calibre","25"), width=15)
     # search_bar.place(relx=0.999999, rely=0.002, anchor=tk.NE)
     screen_width = root.winfo_screenwidth()
-    screen_height = (root.winfo_screenheight() // 10)
+    screen_height = (root.winfo_screenheight() // 21)
     title_bar = tk.Canvas(bg_canvas, width=screen_width, height=screen_height)
     title_bar.pack(side=tk.TOP)
 
