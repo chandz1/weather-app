@@ -352,17 +352,17 @@ def primary_window():
 
 def main_interface():
     create_canvas()
-    # logo=ImageTk.PhotoImage(Image.open("rsz_logo_size.jpg"))
-    # logo_button=tk.Button(root, image=logo)
-    # logo_button.place(relx=0.017, rely=0.028, anchor=tk.CENTER)
     # title_bar=tk.Button(root, text="Weather Forecast", font=("Calibre","18"),width=70)
     # title_bar.place(relx=0.397, rely=0.029, anchor=tk.CENTER)
     # search_bar=tk.Entry(font=("Calibre","25"), width=15)
     # search_bar.place(relx=0.999999, rely=0.002, anchor=tk.NE)
     screen_width = root.winfo_screenwidth()
-    screen_height = (root.winfo_screenheight() // 10)
+    screen_height = (root.winfo_screenheight() // 21)
     title_bar = tk.Canvas(bg_canvas, width=screen_width, height=screen_height)
     title_bar.pack(side=tk.TOP)
+    logo=ImageTk.PhotoImage(Image.open("rsz_logo_size.jpg"))
+    logo_button=tk.Button(title_bar, image=logo)
+    logo_button.place(relx=0.017,rely=0.5, anchor=tk.CENTER)
 
     root.mainloop()
 
