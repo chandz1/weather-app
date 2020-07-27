@@ -16,6 +16,11 @@ try:
     places = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.TAG_NAME, "tbody"))
     )
-    print(places.text)
-except:
+    a=0
+    td_tags = places.find_elements_by_tag_name("td")
+    for td_tag in td_tags:
+        print(td_tags[a].text)
+        a+=4
+
+finally:
     driver.quit()
