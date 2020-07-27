@@ -22,5 +22,7 @@ try:
         print(td_tags[a].text)
         a+=4
 
+#lol
+
 finally:
     driver.quit()
