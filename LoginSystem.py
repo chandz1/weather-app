@@ -356,6 +356,7 @@ def main_interface():
     create_canvas()
     title_bar_height = (root.winfo_screenheight() // 21)
     menu_bar_height = screen_height - title_bar_height
+    menu_bar_width = screen_width // 6
     title_bar = tk.Canvas(bg_canvas, width=screen_width, height=40, bd=0)
     title_bar.pack(side=tk.TOP)
     logo = ImageTk.PhotoImage(Image.open('Logo.png'))
@@ -368,8 +369,12 @@ def main_interface():
     search_image = ImageTk.PhotoImage(Image.open('SearchButton.png'))
     search_button = tk.Button(title_bar, image=search_image, bd=0)
     search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
-    menu_bar = tk.Canvas(bg_canvas, height=menu_bar_height, width = 20)
+    menu_bar = tk.Canvas(bg_canvas, height=menu_bar_height,
+                         width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
+    test_button = AddButtons(
+        menu_bar, 'Weather', menu_bar_width, 0.2, height=2)
+    test_button.create_buttons()
     root.mainloop()
 
 
