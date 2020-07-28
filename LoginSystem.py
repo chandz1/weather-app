@@ -372,9 +372,14 @@ def main_interface():
     menu_bar = tk.Canvas(bg_canvas, height=menu_bar_height,
                          width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
-    test_button = AddButtons(
-        menu_bar, 'Weather', menu_bar_width, 0.2, height=2)
-    test_button.create_buttons()
+    signout_button = AddButtons(
+        menu_bar, 'Sign out', menu_bar_width, 0.8, height=2, font=('Calibre','18'))
+    signout_button.create_buttons()
+    settings_button = AddButtons(
+        menu_bar, 'Settings', menu_bar_width, 0.98, height=2, font=('Calibre','18'))
+    settings_button.create_buttons()
+
+
     root.mainloop()
 
 
