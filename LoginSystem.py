@@ -69,7 +69,7 @@ def start_root_window(window_width=None, window_height=None,
     global screen_height
     root = tk.Tk()
     root.title(window_title)
-    root.attributes('-zoomed', True)
+    root.attributes('-fullscreen', True)
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     # if window_width is None and window_height is None:
@@ -363,12 +363,13 @@ def main_interface():
     logo_button.place(relx=0.015, rely=0.5, anchor=tk.CENTER)
     title_bar.create_text(screen_width / 4, 20, anchor=tk.CENTER, font=(
         'Calibre', '14'), text='The Weather Forecast App')
-    search_bar = tk.Entry(title_bar, font=("Calibre", '22'), width=15)
-    search_bar.place(relx=1, rely=0, anchor=tk.NE)
+    search_bar = tk.Entry(title_bar, font=("Calibre", '22'), width=17)
+    search_bar.place(relx=0.895, rely=0.1, anchor=tk.N)
     search_image = ImageTk.PhotoImage(Image.open('SearchButton.png'))
     search_button = tk.Button(title_bar, image=search_image, bd=0)
-    search_button.place(relx=0.774, rely=0.5, anchor=tk.CENTER)
-
+    search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
+    menu_bar = tk.Canvas(bg_canvas, height=menu_bar_height, width = 20)
+    menu_bar.pack(side=tk.LEFT)
     root.mainloop()
 
 
