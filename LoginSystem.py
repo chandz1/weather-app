@@ -65,16 +65,18 @@ def quit(*window):
 def start_root_window(window_width=None, window_height=None,
                       window_title='The Weather Forecast App'):
     global root
+    global screen_width
+    global screen_height
     root = tk.Tk()
     root.title(window_title)
-    root.attributes('-fullscreen', True)
-    # screen_width = root.winfo_screenwidth()
-    # screen_height = (root.winfo_screenheight() - 25)
+    root.attributes('-zoomed', True)
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
     # if window_width is None and window_height is None:
     #     root.geometry('{}x{}'.format(screen_width, screen_height))
     # else:
     #     root.geometry('{}x{}'.format(window_width, window_height))
-    root.resizable(False, False)
+    # root.resizable(False, False)
 
 
 def create_canvas():
@@ -82,9 +84,9 @@ def create_canvas():
     global bg_canvas
     global bg_image
     bg_image = ImageTk.PhotoImage(Image.open('CloudsBg.gif'))
-    bg_canvas = tk.Canvas(root, bg='#15adc2')
+    bg_canvas = tk.Canvas(root)
     bg_canvas.pack(expand=True, fill=tk.BOTH, side=tk.TOP)
-    bg_canvas.create_image(450, 250, image=bg_image)
+    bg_canvas.create_image(screen_width / 2, screen_height / 2, image=bg_image)
 
 
 def write_json(data, filename='loginData.json'):
@@ -331,7 +333,7 @@ def confirm_dialog(window):
 
 def primary_window():
     create_canvas()
-    bg_canvas.create_text(675, 200, anchor=tk.CENTER, font=(
+    bg_canvas.create_text(screen_width / 2, screen_height / 4, anchor=tk.CENTER, font=(
         'Calibre', '28'), text='Weather Forecast - Login')
 
     btn1 = AddButtons(bg_canvas, 'Login', 20, 0.45,
@@ -352,17 +354,20 @@ def primary_window():
 
 def main_interface():
     create_canvas()
-    # title_bar=tk.Button(root, text="Weather Forecast", font=("Calibre","18"),width=70)
-    # title_bar.place(relx=0.397, rely=0.029, anchor=tk.CENTER)
-    # search_bar=tk.Entry(font=("Calibre","25"), width=15)
-    # search_bar.place(relx=0.999999, rely=0.002, anchor=tk.NE)
-    screen_width = root.winfo_screenwidth()
-    screen_height = (root.winfo_screenheight() // 21)
-    title_bar = tk.Canvas(bg_canvas, width=screen_width, height=screen_height)
+    title_bar_height = (root.winfo_screenheight() // 21)
+    menu_bar_height = screen_height - title_bar_height
+    title_bar = tk.Canvas(bg_canvas, width=screen_width, height=40, bd=0)
     title_bar.pack(side=tk.TOP)
-    logo=ImageTk.PhotoImage(Image.open("rsz_logo_size.jpg"))
-    logo_button=tk.Button(title_bar, image=logo)
-    logo_button.place(relx=0.017,rely=0.5, anchor=tk.CENTER)
+    logo = ImageTk.PhotoImage(Image.open('Logo.png'))
+    logo_button = tk.Button(title_bar, image=logo, bd=0)
+    logo_button.place(relx=0.015, rely=0.5, anchor=tk.CENTER)
+    title_bar.create_text(screen_width / 4, 20, anchor=tk.CENTER, font=(
+        'Calibre', '14'), text='The Weather Forecast App')
+    search_bar = tk.Entry(title_bar, font=("Calibre", '22'), width=15)
+    search_bar.place(relx=1, rely=0, anchor=tk.NE)
+    search_image = ImageTk.PhotoImage(Image.open('SearchButton.png'))
+    search_button = tk.Button(title_bar, image=search_image, bd=0)
+    search_button.place(relx=0.774, rely=0.5, anchor=tk.CENTER)
 
     root.mainloop()
 
