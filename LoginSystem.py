@@ -43,11 +43,11 @@ class AddButtons():
         self.command = command
         self.font = font
 
-    def create_buttons(self, rely=0.5, relx=0.5, image=None):
+    def create_buttons(self, rely=0.5, relx=0.5, image=None, bd=1):
         button = tk.Button(self.master, text=self.text,
                            width=self.width, height=self.height,
                            bg='#e3d6d6', command=self.command,
-                           font=self.font, image=image)
+                           font=self.font, image=image, bd=bd)
         button.place(relx=relx, rely=rely, anchor=tk.CENTER)
 
 
@@ -79,7 +79,7 @@ def start_root_window(window_width=None, window_height=None, window_title='The W
     global screen_height
     root = tk.Tk()
     root.title(window_title)
-    root.attributes('-zoomed', True)
+    root.attributes('-fullscreen', True)
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     # if window_width is None and window_height is None:
@@ -363,7 +363,7 @@ def main_interface():
     bg.create_canvas(image=bg_image)
     title_bar_height = (root.winfo_screenheight() // 21)
     menu_bar_height = screen_height - title_bar_height
-    menu_bar_width = screen_width // 6
+    menu_bar_width = screen_width // 26
     title_bar = tk.Canvas(canvas, width=screen_width, height=40, bd=0)
     title_bar.pack(side=tk.TOP)
     logo = ImageTk.PhotoImage(Image.open('Logo.png'))
@@ -381,11 +381,13 @@ def main_interface():
                          width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
     signout_button = AddButtons(
-        menu_bar, 'Sign out', menu_bar_width, height=2, font=('Calibre', '18'))
-    signout_button.create_buttons(0.8)
+        menu_bar, text='', width=5, height=2)
+    signout_button.create_buttons(0.8, bd=0)
     settings_button = AddButtons(
-        menu_bar, 'Settings', menu_bar_width, height=2, font=('Calibre', '18'))
-    settings_button.create_buttons(0.98)
+        menu_bar, text='', width=5, height=2)
+    settings_button.create_buttons(0.94, bd=0)
+
+
 
     root.mainloop()
 
