@@ -381,6 +381,12 @@ def main_interface():
     menu_bar = tk.Canvas(canvas, height=menu_bar_height,
                          width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
+    home_button = AddButtons(
+        menu_bar, text='', width=5, height=2)
+    home_button.create_buttons(0.1, bd=0)
+    favourites_button = AddButtons(
+        menu_bar, text='', width=5, height=2)
+    favourites_button.create_buttons(0.2, bd=0)
     signout_button = AddButtons(
         menu_bar, text='Set', width=2, height=2)
     signout_button.create_buttons(0.8, bd=0)
