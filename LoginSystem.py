@@ -48,8 +48,6 @@ class AddButtons():
                            width=self.width, height=self.height,
                            bg='#e3d6d6', command=self.command,
                            font=self.font, image=image)
-        # self.relx=relx
-        # self.rely=rely
         button.place(relx=relx, rely=rely, anchor=tk.CENTER)
 
 
@@ -376,18 +374,18 @@ def main_interface():
     search_bar = tk.Entry(title_bar, font=("Calibre", '22'), width=17)
     search_bar.place(relx=0.895, rely=0.1, anchor=tk.N)
     search_image = ImageTk.PhotoImage(Image.open('SearchButton.png'))
-    search_button = tk.Button(title_bar, image=search_image, bd=0)
-    search_button.place(relx=0.78, rely=0.5,
-                        anchor=tk.CENTER, command=search_input)
+    search_button = tk.Button(
+        title_bar, image=search_image, bd=0, command=search_input)
+    search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
     menu_bar = tk.Canvas(canvas, height=menu_bar_height,
                          width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
     signout_button = AddButtons(
-        menu_bar, 'Sign out', menu_bar_width, 0.8, height=2, font=('Calibre', '18'))
-    signout_button.create_buttons()
+        menu_bar, 'Sign out', menu_bar_width, height=2, font=('Calibre', '18'))
+    signout_button.create_buttons(0.8)
     settings_button = AddButtons(
-        menu_bar, 'Settings', menu_bar_width, 0.98, height=2, font=('Calibre', '18'))
-    settings_button.create_buttons()
+        menu_bar, 'Settings', menu_bar_width, height=2, font=('Calibre', '18'))
+    settings_button.create_buttons(0.98)
 
     root.mainloop()
 
