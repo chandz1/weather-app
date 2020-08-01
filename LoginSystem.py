@@ -179,16 +179,6 @@ def login():
                 incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
             except tk.TclError:
                 pass
-            try:
-                for i in range(100):
-                    time.sleep(0.01)
-                    top_level.update()
-            except tk.TclError:
-                pass
-            try:
-                incorrect_label.destroy()
-            except Exception:
-                pass
 
 
 def forgot_passkey():
