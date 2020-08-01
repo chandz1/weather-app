@@ -17,6 +17,7 @@ comparitive_info = {}
 signup_comp = {}
 pass_check = {}
 existing_usernames = []
+existing_mails = []
 logged_in = False
 guest = False
 
@@ -261,7 +262,8 @@ def signup_clicked():
     for user in login_data:
         existing_username = user.get("Username")
         existing_usernames.append(existing_username)
-    existing_mail = user.get("MailId")
+        existing_mail = user.get("MailId")
+        existing_mails.append(existing_mail)
     comp_username = signup_comp.get("Username")
     comp_username = comp_username.lower()
     comp_mailid = signup_comp.get("MailId")
