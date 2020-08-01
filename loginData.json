@@ -1,9 +1,12 @@
-{
-    "userLoginData": [
-        {
-            "Username": "sarath",
-            "Password": "sarath123",
-            "MailId": "sarathchandragodithi@gmail.com"
-        }
-    ]
-}
+[
+    {
+        "Username": "sarath",
+        "Password": "sarath123",
+        "MailId": "sarathchandragodithi@gmail.com"
+    },
+    {
+        "Username": "syam",
+        "Password": "syam123",
+        "MailId": "rocksyamsai@gmail.com"
+    }
+]

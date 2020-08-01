@@ -6,7 +6,7 @@ import smtplib
 import SendMail
 import json
 import time
-import multiprocessing
+import multiprocessing as mp
 
 
 # Lists & Variables:
@@ -16,6 +16,7 @@ login_info = {}
 comparitive_info = {}
 signup_comp = {}
 pass_check = {}
+existing_usernames = []
 logged_in = False
 guest = False
 
@@ -103,7 +104,7 @@ def write_json(data, filename="loginData.json"):
 
 
 def save_file():
-    global comparitive_info
+    global data
     with open("loginData.json") as json_file:
         data = json.load(json_file)
         temp = data["userLoginData"]
@@ -151,32 +152,43 @@ def get_login_input():
 def login():
     global logged_in
     file_data = json.load(open("loginData.json", "r"))
-    all_users = file_data["userLoginData"]
-    for user in all_users:
+    for user in file_data:
         real_username = user.get("Username")
         real_password = user.get("Password")
         comp_username = comparitive_info.get("Username")
         comp_username = comp_username.lower()
         comp_password = comparitive_info.get("Password")
         if real_username == comp_username and real_password == comp_password:
-            global incorrect_label
-            try:
-                incorrect_label.destroy()
-            except Exception:
-                pass
             logged_in = True
             completeLabel = tk.Label(
-                top_level, text="You Have Been Logged In.", fg="green"
+                top_level, text="You Have Successfully Been Logged In.", fg="green"
             )
             completeLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
             top_level.update_idletasks()
             time.sleep(1.5)
             quit(root)
         else:
-            incorrect_label = tk.Label(
-                top_level, text="Incorrect Username Or Password.", fg="red"
-            )
-            incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
+            try:
+                incorrect_label.destroy()
+            except Exception:
+                pass
+            try:
+                incorrect_label = tk.Label(
+                    top_level, text="Incorrect Username Or Password.", fg="red"
+                )
+                incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
+            except tk.TclError:
+                pass
+            try:
+                for i in range(100):
+                    time.sleep(0.01)
+                    top_level.update()
+            except tk.TclError:
+                pass
+            try:
+                incorrect_label.destroy()
+            except Exception:
+                pass
 
 
 def forgot_passkey():
@@ -243,75 +255,103 @@ def get_signup_input():
 def signup_clicked():
     global no_mailid
     global bad_mailid
-    global same_mailid
+    global used_mailid
+    global used_username
+    global no_username
+    existing_usernames.clear()
     login_data = json.load(open("loginData.json", "r"))
-    all_users = login_data["userLoginData"]
-    for user in all_users:
+    for user in login_data:
         existing_username = user.get("Username")
-        existing_mail = user.get("MailId")
-        comp_username = signup_comp.get("Username")
-        comp_username = comp_username.lower()
-        comp_mailid = signup_comp.get("MailId")
-        comp_mailid = comp_mailid.lower()
-        comp_pass = pass_check.get("Password")
-        comp_confirm_pass = pass_check.get("ConfirmPassword")
-        if comp_mailid != existing_mail:
-            if comp_mailid != "":
-                if comp_username != existing_username:
-                    if comp_pass == comp_confirm_pass:
-                        try:
-                            SendMail.new_mail = comp_mailid
-                            message = SendMail.mail_sent_message
-                            SendMail.sendMail()
+        existing_usernames.append(existing_username)
+    existing_mail = user.get("MailId")
+    comp_username = signup_comp.get("Username")
+    comp_username = comp_username.lower()
+    comp_mailid = signup_comp.get("MailId")
+    comp_mailid = comp_mailid.lower()
+    comp_pass = pass_check.get("Password")
+    comp_confirm_pass = pass_check.get("ConfirmPassword")
+    if comp_mailid != existing_mail and comp_mailid != "":
+        if comp_username not in existing_usernames and comp_username != "":
+            if comp_pass == comp_confirm_pass:
+                if comp_pass != "":
+                    try:
+                        SendMail.new_mail = comp_mailid
+                        message = SendMail.mail_sent_message
+                        SendMail.sendMail()
 
-                            verification_window = TopLevel(
-                                "Enter Verification Code", "300x200"
-                            )
-                            verification_window.create_toplevel(root)
+                        verification_window = TopLevel(
+                            "Enter Verification Code", "300x200"
+                        )
+                        verification_window.create_toplevel(root)
 
-                            mail_sent = tk.Label(
-                                top_level, text=message, font=("Calibre", "12")
-                            )
-                            mail_sent.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
+                        mail_sent = tk.Label(
+                            top_level, text=message, font=("Calibre", "12")
+                        )
+                        mail_sent.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
-                        except smtplib.SMTPRecipientsRefused:
-                            error_exception()
-                            bad_mailid = tk.Label(
-                                top_level,
-                                text="Invalid MailId!",
-                                font=("Calibre", "10"),
-                                fg="red",
-                            )
-                            bad_mailid.place(relx=0.78, rely=0.235, anchor=tk.CENTER)
-                            # print('invalid MailId')
+                        verification_box = tk.Entry(top_level)
+                        verification_box.place(
+                            relx=0.5, rely=0.7, anchor=tk.CENTER, width=350
+                        )
 
-                        except smtplib.socket.gaierror:
-                            messagebox.showwarning(
-                                title="Internet Connection Error",
-                                message="Check You Internet Connection.",
-                            )
-                            # print('Check your internet connection.')
-            else:
-                error_exception()
-                no_mailid = tk.Label(
-                    top_level, text="Enter a Mail-Id!", font=("Calibre", "10"), fg="red"
-                )
-                no_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
-        else:
+                    except smtplib.SMTPRecipientsRefused:
+                        error_exception()
+                        bad_mailid = tk.Label(
+                            top_level,
+                            text="Invalid MailId!",
+                            font=("Calibre", "10"),
+                            fg="red",
+                        )
+                        bad_mailid.place(relx=0.78, rely=0.235, anchor=tk.CENTER)
+                        # print('invalid MailId')
+
+                    except smtplib.socket.gaierror:
+                        messagebox.showwarning(
+                            title="Internet Connection Error",
+                            message="Check You Internet Connection.",
+                        )
+                        # print('Check your internet connection.')
+        elif comp_username in existing_usernames:
             error_exception()
-            same_mailid = tk.Label(
-                top_level, text="Mail-Id in use!", font=("Calibre", "10"), fg="red"
+            used_username = tk.Label(
+                top_level, text="Username Is Use!", font=("Calibre", "10"), fg="red"
             )
-            same_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
+            used_username.place(relx=0.81, rely=0.08, anchor=tk.CENTER)
+        elif comp_username == "":
+            error_exception()
+            no_username = tk.Label(
+                top_level, text="Enter A Username!", font=("Calibre", "10"), fg="red"
+            )
+            no_username.place(relx=0.81, rely=0.08, anchor=tk.CENTER)
+    elif comp_mailid == existing_mail:
+        error_exception()
+        used_mailid = tk.Label(
+            top_level, text="Mail-Id In Use!", font=("Calibre", "10"), fg="red"
+        )
+        used_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
+    elif comp_mailid == "":
+        error_exception()
+        no_mailid = tk.Label(
+            top_level, text="Enter Your Mail-Id!", font=("Calibre", "10"), fg="red"
+        )
+        no_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
 
 
 def error_exception():
+    try:
+        no_username.destroy()
+    except Exception:
+        pass
+    try:
+        used_username.destroy()
+    except Exception:
+        pass
     try:
         bad_mailid.destroy()
     except Exception:
         pass
     try:
-        same_mailid.destroy()
+        used_mailid.destroy()
     except Exception:
         pass
     try:
