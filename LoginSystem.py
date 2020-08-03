@@ -487,10 +487,13 @@ def main_interface():
     home_button.create_buttons(0.1, bd=0)
     favourites_button = AddButtons(menu_bar, text="", width=5, height=2)
     favourites_button.create_buttons(0.2, bd=0)
-    signout_button = AddButtons(menu_bar, text="Set", width=2, height=2)
+    feedback_button = AddButtons(menu_bar, text="", width=5, height=2)
+    feedback_button.create_buttons(0.3, bd=0)
+    signout_button = AddButtons(menu_bar, text="Sign out", width=6, height=2, font=("Calibre","6"))
     signout_button.create_buttons(0.8, bd=0)
-    settings_button = AddButtons(menu_bar, text="Set", width=40, height=40)
+    settings_button = AddButtons(menu_bar, text="", width=40, height=40)
     settings_button.create_buttons(0.94, image=settings_image, bd=0)
+
 
     root.mainloop()
 
