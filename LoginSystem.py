@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import smtplib
 import SendMail
 import SearchResults
+import Getlocation
 import json
 import time
 import multiprocessing as mp
@@ -18,6 +19,7 @@ signup_comp = {}
 pass_check = {}
 existing_usernames = []
 existing_mails = []
+default_location = Getlocation.city
 logged_in = False
 guest = False
 
@@ -429,15 +431,22 @@ def confirm_dialog(window):
     yes_btn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
-def search_input():
-    var = ''
+def search_input(event):
+    global list_box
+    SearchResults.list_of_places.clear()
+    try:
+        quit(list_box)
+    except Exception:
+        pass
     SearchResults.place = search_bar.get()
     SearchResults.get_url()
-    list_box = tk.Listbox(root)
-    list_box.config(width=40)
-    list_box.place(relx=0.5,rely=0.5)
+    list_box = tk.Listbox(
+        root, width=80, height=20, bd=0, bg="#f7f7f7", selectbackground="#0080ff"
+    )
+    list_box.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
     for item in SearchResults.list_of_places:
         list_box.insert(tk.END, item)
+    # print(list_box.size())
 
 
 def primary_window():
@@ -466,7 +475,9 @@ def primary_window():
 
 def main_interface():
     global search_bar
-    bg_image = ImageTk.PhotoImage(Image.open("CloudsBg.gif"))
+    bg_image = ImageTk.PhotoImage(
+        Image.open(f"Background Pics\Stormy{screen_width}x{screen_height}.jpg")
+    )
     settings_image = ImageTk.PhotoImage(Image.open("settings_button.png"))
     bg = AddCanvas(root)
     bg.create_canvas(image=bg_image)
@@ -487,6 +498,7 @@ def main_interface():
     )
     search_bar = tk.Entry(title_bar, font=("Calibre", "22"), width=17)
     search_bar.place(relx=0.895, rely=0.1, anchor=tk.N)
+    search_bar.bind("<Return>", search_input)
     search_image = ImageTk.PhotoImage(Image.open("SearchButton.png"))
     search_button = tk.Button(title_bar, image=search_image, bd=0, command=search_input)
     search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
@@ -502,7 +514,6 @@ def main_interface():
     signout_button.create_buttons(0.8, bd=0)
     settings_button = AddButtons(menu_bar, text="", width=40, height=40)
     settings_button.create_buttons(0.94, image=settings_image, bd=0)
-    
 
     root.mainloop()
 
