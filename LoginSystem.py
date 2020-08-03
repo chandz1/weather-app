@@ -431,7 +431,7 @@ def confirm_dialog(window):
     yes_btn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
-def search_input(event):
+def search_input(event=None):
     global list_box
     SearchResults.list_of_places.clear()
     try:
