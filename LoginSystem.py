@@ -8,7 +8,6 @@ import json
 import time
 import multiprocessing as mp
 
-
 # Lists & Variables:
 login_entries = []
 signup_entries = []
