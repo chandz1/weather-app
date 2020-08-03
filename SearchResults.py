@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # Variables:
-place = 'hyderabad'
+place = ''
+list_of_places = []
 
 # Functions:
 
@@ -18,7 +19,4 @@ def get_url():
     del all_places[0]
     for i in all_places:
         names = i.find('td')
-        print(names.text)
-
-
-get_url()
+        list_of_places.append(names.text)

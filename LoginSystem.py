@@ -4,6 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import smtplib
 import SendMail
+import SearchResults
 import json
 import time
 import multiprocessing as mp
@@ -429,7 +430,14 @@ def confirm_dialog(window):
 
 
 def search_input():
-    pass
+    var = ''
+    SearchResults.place = search_bar.get()
+    SearchResults.get_url()
+    list_box = tk.Listbox(root)
+    list_box.config(width=40)
+    list_box.place(relx=0.5,rely=0.5)
+    for item in SearchResults.list_of_places:
+        list_box.insert(tk.END, item)
 
 
 def primary_window():
@@ -457,6 +465,7 @@ def primary_window():
 
 
 def main_interface():
+    global search_bar
     bg_image = ImageTk.PhotoImage(Image.open("CloudsBg.gif"))
     settings_image = ImageTk.PhotoImage(Image.open("settings_button.png"))
     bg = AddCanvas(root)
@@ -489,11 +498,11 @@ def main_interface():
     favourites_button.create_buttons(0.2, bd=0)
     feedback_button = AddButtons(menu_bar, text="", width=5, height=2)
     feedback_button.create_buttons(0.3, bd=0)
-    signout_button = AddButtons(menu_bar, text="Sign out", width=6, height=2, font=("Calibre","6"))
+    signout_button = AddButtons(menu_bar, text="", width=6, height=2)
     signout_button.create_buttons(0.8, bd=0)
     settings_button = AddButtons(menu_bar, text="", width=40, height=40)
     settings_button.create_buttons(0.94, image=settings_image, bd=0)
-
+    
 
     root.mainloop()
 
