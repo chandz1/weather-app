@@ -20,7 +20,7 @@ def get_url():
     for i in all_places:
         unedited_name = i.find("td").text
         if unedited_name.endswith(" *") is True:
-            edited_name = unedited_name.replace("*", "")
+            edited_name = unedited_name.replace(" *", "")
             list_of_places.append(edited_name)
         else:
             list_of_places.append(unedited_name)
