@@ -479,14 +479,19 @@ def main_interface():
         Image.open(f"Background Pics\Stormy{screen_width}x{screen_height}.jpg")
     )
     settings_image = ImageTk.PhotoImage(Image.open("settings_button.png"))
+
     bg = AddCanvas(root)
     bg.create_canvas(image=bg_image)
+
     title_bar_height = 40
     menu_bar_height = screen_height - title_bar_height
     menu_bar_width = 40
+
     title_bar = tk.Canvas(canvas, width=screen_width, height=40, bd=0)
     title_bar.pack(side=tk.TOP)
+
     logo = ImageTk.PhotoImage(Image.open("Logo.png"))
+
     logo_button = tk.Button(title_bar, image=logo, bd=0)
     logo_button.place(relx=0.015, rely=0.5, anchor=tk.CENTER)
     title_bar.create_text(
@@ -500,20 +505,27 @@ def main_interface():
     search_bar.place(relx=0.895, rely=0.1, anchor=tk.N)
     search_bar.bind("<Return>", search_input)
     search_image = ImageTk.PhotoImage(Image.open("SearchButton.png"))
+
     search_button = tk.Button(title_bar, image=search_image, bd=0, command=search_input)
     search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
-    menu_bar = tk.Canvas(canvas, height=menu_bar_height, width=menu_bar_width)
+
+    menu_bar = tk.Frame(canvas, height=menu_bar_height, width=menu_bar_width)
     menu_bar.pack(side=tk.LEFT)
-    home_button = AddButtons(menu_bar, text="", width=5, height=2)
-    home_button.create_buttons(0.1, bd=0)
-    favourites_button = AddButtons(menu_bar, text="", width=5, height=2)
-    favourites_button.create_buttons(0.2, bd=0)
-    feedback_button = AddButtons(menu_bar, text="", width=5, height=2)
-    feedback_button.create_buttons(0.3, bd=0)
-    signout_button = AddButtons(menu_bar, text="", width=6, height=2)
-    signout_button.create_buttons(0.8, bd=0)
-    settings_button = AddButtons(menu_bar, text="", width=40, height=40)
-    settings_button.create_buttons(0.94, image=settings_image, bd=0)
+
+    home_button = tk.Button(menu_bar, width=5, height=2)
+    home_button.grid(column=0, row=0)
+
+    favourites_button = tk.Button(menu_bar, width=5, height=2)
+    favourites_button.grid(column=0, row=1)
+
+    # feedback_button = AddButtons(menu_bar, text="", width=5, height=2)
+    # feedback_button.create_buttons(0.3, bd=0)
+
+    # signout_button = AddButtons(menu_bar, text="", width=6, height=2)
+    # signout_button.create_buttons(0.8, bd=0)
+
+    # settings_button = AddButtons(menu_bar, text="", width=40, height=40)
+    # settings_button.create_buttons(0.94, image=settings_image, bd=0)
 
     root.mainloop()
 
