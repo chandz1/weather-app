@@ -69,7 +69,7 @@ class AddCanvas:
         self.width = width
         self.height = height
 
-    def create_canvas(self, rely=None, relx=None, image=None, side=tk.TOP):
+    def create_canvas(self, image=None, side=tk.LEFT):
         global canvas
         canvas = tk.Canvas(self.master, width=self.width, height=self.height)
         canvas.pack(expand=True, fill=tk.BOTH, side=side)
@@ -478,54 +478,73 @@ def main_interface():
     bg_image = ImageTk.PhotoImage(
         Image.open(f"Background Pics\Stormy{screen_width}x{screen_height}.jpg")
     )
-    settings_image = ImageTk.PhotoImage(Image.open("settings_button.png"))
+    arrow_image = ImageTk.PhotoImage(Image.open("Buttons\ArrowButton.png"))
+    search_image = ImageTk.PhotoImage(Image.open("Buttons\SearchButton.png"))
+    settings_image = ImageTk.PhotoImage(Image.open("Buttons\SettingsButton.png"))
+    account_image = ImageTk.PhotoImage(Image.open("Buttons\AccountButton.png"))
+    home_image = ImageTk.PhotoImage(Image.open("Buttons\HomeButton.png"))
+    favorites_image = ImageTk.PhotoImage(Image.open("Buttons\FavoritesButton.png"))
+    graphs_image = ImageTk.PhotoImage(Image.open("Buttons\GraphsButton.png"))
 
     bg = AddCanvas(root)
     bg.create_canvas(image=bg_image)
 
     title_bar_height = 40
-    menu_bar_height = screen_height - title_bar_height
-    menu_bar_width = 40
+    menu_bar_height = screen_height - title_bar_height - 2
+    menu_bar_width = 38
 
-    title_bar = tk.Canvas(canvas, width=screen_width, height=40, bd=0)
-    title_bar.pack(side=tk.TOP)
-
-    logo = ImageTk.PhotoImage(Image.open("Logo.png"))
-
-    logo_button = tk.Button(title_bar, image=logo, bd=0)
-    logo_button.place(relx=0.015, rely=0.5, anchor=tk.CENTER)
-    title_bar.create_text(
-        screen_width / 4,
-        20,
-        anchor=tk.CENTER,
-        font=("Calibre", "14"),
-        text="The Weather Forecast App",
+    title_bar = tk.Frame(bg="#71879C")
+    canvas.create_window(
+        0,
+        0,
+        anchor=tk.NW,
+        window=title_bar,
+        width=screen_width,
+        height=title_bar_height,
     )
+
+    arrow_button = tk.Button(title_bar, bd=0, bg="#71879C", image=arrow_image)
+    arrow_button.pack(side=tk.LEFT)
+    # title_bar.create_text(
+    #     screen_width / 4,
+    #     20,
+    #     anchor=tk.CENTER,
+    #     font=("Calibre", "14"),
+    #     text="The Weather Forecast App",
+    # )
     search_bar = tk.Entry(title_bar, font=("Calibre", "22"), width=17)
-    search_bar.place(relx=0.895, rely=0.1, anchor=tk.N)
+    search_bar.pack(side=tk.RIGHT)
     search_bar.bind("<Return>", search_input)
-    search_image = ImageTk.PhotoImage(Image.open("SearchButton.png"))
 
-    search_button = tk.Button(title_bar, image=search_image, bd=0, command=search_input)
-    search_button.place(relx=0.78, rely=0.5, anchor=tk.CENTER)
+    search_button = tk.Button(title_bar, bd=0, image=search_image, command=search_input)
+    search_button.pack(side=tk.RIGHT, padx=2)
 
-    menu_bar = tk.Frame(canvas, height=menu_bar_height, width=menu_bar_width)
-    menu_bar.pack(side=tk.LEFT)
+    menu_bar = tk.Frame(bg="#71879C")
+    canvas.create_window(
+        0,
+        40,
+        anchor=tk.NW,
+        window=menu_bar,
+        width=menu_bar_width,
+        height=menu_bar_height,
+    )
 
-    home_button = tk.Button(menu_bar, width=5, height=2)
-    home_button.grid(column=0, row=0)
+    home_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=home_image)
+    home_button.pack(side=tk.TOP, pady=4)
 
-    favourites_button = tk.Button(menu_bar, width=5, height=2)
-    favourites_button.grid(column=0, row=1)
+    bookmarks_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=favorites_image)
+    bookmarks_button.pack(side=tk.TOP, pady=4)
 
-    # feedback_button = AddButtons(menu_bar, text="", width=5, height=2)
-    # feedback_button.create_buttons(0.3, bd=0)
+    graph_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=graphs_image)
+    graph_button.pack(side=tk.TOP, pady=4)
 
-    # signout_button = AddButtons(menu_bar, text="", width=6, height=2)
-    # signout_button.create_buttons(0.8, bd=0)
+    settings_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=settings_image)
+    settings_button.pack(side=tk.BOTTOM, pady=4)
 
-    # settings_button = AddButtons(menu_bar, text="", width=40, height=40)
-    # settings_button.create_buttons(0.94, image=settings_image, bd=0)
+    signout_button = tk.Button(
+        menu_bar, bd=0, text="signout", bg="#71879C", image=account_image
+    )
+    signout_button.pack(side=tk.BOTTOM, pady=4)
 
     root.mainloop()
 
