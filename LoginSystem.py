@@ -520,12 +520,21 @@ def main_interface():
     search_button.pack(side=tk.RIGHT, padx=2)
 
     menu_bar = tk.Frame(bg="#71879C")
+    extend_menu = tk.Frame(bg="#71879C")
     canvas.create_window(
         0,
         40,
         anchor=tk.NW,
         window=menu_bar,
         width=menu_bar_width,
+        height=menu_bar_height,
+    )
+    canvas.create_window(
+        38,
+        40,
+        anchor=tk.NW,
+        window=extend_menu,
+        width=menu_bar_width * 4,
         height=menu_bar_height,
     )
 
