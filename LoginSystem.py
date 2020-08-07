@@ -22,6 +22,7 @@ existing_mails = []
 default_location = Getlocation.city
 logged_in = False
 guest = False
+func_called = 2
 
 
 # Classes:
@@ -449,6 +450,29 @@ def search_input(event=None):
     # print(list_box.size())
 
 
+def extend_menubar():
+    global func_called
+    global extend_menu
+    func_called += 1
+    remainder = func_called % 2
+    if remainder != 0:
+        extend_menu = tk.Frame(bg="#71879C")
+        canvas.create_window(
+            38,
+            40,
+            anchor=tk.NW,
+            window=extend_menu,
+            width=menu_bar_width * 4,
+            height=menu_bar_height,
+        )
+        home_label = tk.Label(
+            extend_menu, text="Home", font=("Calibre", "20"), bg="#71879C"
+        )
+        home_label.pack(side=tk.TOP, pady=4)
+    elif remainder == 0:
+        quit(extend_menu)
+
+
 def primary_window():
     bg_image = ImageTk.PhotoImage(Image.open("CloudsBg.gif"))
     bg = AddCanvas(root)
@@ -475,6 +499,8 @@ def primary_window():
 
 def main_interface():
     global search_bar
+    global menu_bar_width
+    global menu_bar_height
     bg_image = ImageTk.PhotoImage(
         Image.open(f"Background Pics\Stormy{screen_width}x{screen_height}.jpg")
     )
@@ -503,7 +529,9 @@ def main_interface():
         height=title_bar_height,
     )
 
-    arrow_button = tk.Button(title_bar, bd=0, bg="#71879C", image=arrow_image)
+    arrow_button = tk.Button(
+        title_bar, bd=0, bg="#71879C", image=arrow_image, command=extend_menubar
+    )
     arrow_button.pack(side=tk.LEFT)
     # title_bar.create_text(
     #     screen_width / 4,
@@ -520,21 +548,12 @@ def main_interface():
     search_button.pack(side=tk.RIGHT, padx=2)
 
     menu_bar = tk.Frame(bg="#71879C")
-    extend_menu = tk.Frame(bg="#71879C")
     canvas.create_window(
         0,
         40,
         anchor=tk.NW,
         window=menu_bar,
         width=menu_bar_width,
-        height=menu_bar_height,
-    )
-    canvas.create_window(
-        38,
-        40,
-        anchor=tk.NW,
-        window=extend_menu,
-        width=menu_bar_width * 4,
         height=menu_bar_height,
     )
 
