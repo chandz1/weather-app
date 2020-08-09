@@ -10,7 +10,6 @@ def get_location():
     geo_req = requests.get(send_url)
     geo_json = json.loads(geo_req.text)
     city = geo_json["city"]
-    print(city)
 
 
 get_location()
