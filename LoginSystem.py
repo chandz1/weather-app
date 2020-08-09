@@ -502,15 +502,15 @@ def main_interface():
     global menu_bar_width
     global menu_bar_height
     bg_image = ImageTk.PhotoImage(
-        Image.open(f"Background Pics\Stormy{screen_width}x{screen_height}.jpg")
+        Image.open(f"Background Pics/Stormy{screen_width}x{screen_height}.jpg")
     )
-    arrow_image = ImageTk.PhotoImage(Image.open("Buttons\ArrowButton.png"))
-    search_image = ImageTk.PhotoImage(Image.open("Buttons\SearchButton.png"))
-    settings_image = ImageTk.PhotoImage(Image.open("Buttons\SettingsButton.png"))
-    account_image = ImageTk.PhotoImage(Image.open("Buttons\AccountButton.png"))
-    home_image = ImageTk.PhotoImage(Image.open("Buttons\HomeButton.png"))
-    favorites_image = ImageTk.PhotoImage(Image.open("Buttons\FavoritesButton.png"))
-    graphs_image = ImageTk.PhotoImage(Image.open("Buttons\GraphsButton.png"))
+    arrow_image = ImageTk.PhotoImage(Image.open("Buttons/ArrowButton.png"))
+    search_image = ImageTk.PhotoImage(Image.open("Buttons/SearchButton.png"))
+    settings_image = ImageTk.PhotoImage(Image.open("Buttons/SettingsButton.png"))
+    account_image = ImageTk.PhotoImage(Image.open("Buttons/AccountButton.png"))
+    home_image = ImageTk.PhotoImage(Image.open("Buttons/HomeButton.png"))
+    favorites_image = ImageTk.PhotoImage(Image.open("Buttons/FavoritesButton.png"))
+    graphs_image = ImageTk.PhotoImage(Image.open("Buttons/GraphsButton.png"))
 
     bg = AddCanvas(root)
     bg.create_canvas(image=bg_image)
