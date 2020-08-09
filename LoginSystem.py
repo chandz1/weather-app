@@ -468,7 +468,28 @@ def extend_menubar():
         home_label = tk.Label(
             extend_menu, text="Home", font=("Calibre", "20"), bg="#71879C"
         )
-        home_label.pack(side=tk.TOP, pady=4)
+        home_label.pack(side=tk.TOP)
+
+        favourites_label = tk.Label(
+            extend_menu, text="Favourites", font=("Calibre", "20"), bg="#71879C"
+        )
+        favourites_label.pack(side=tk.TOP, pady=8)
+
+        graphs_label = tk.Label(
+            extend_menu, text="Graphs", font=("Calibre", "20"), bg="#71879C"
+        )
+        graphs_label.pack(side=tk.TOP)
+
+        settings_label = tk.Label(
+            extend_menu, text="Settings", font=("Calibre", "20"), bg="#71879C"
+        )
+        settings_label.pack(side=tk.BOTTOM)
+
+        signout_label = tk.Label(
+            extend_menu, text="Sign out", font=("Calibre", "20"), bg="#71879C"
+        )
+        signout_label.pack(side=tk.BOTTOM, pady=8)
+        
     elif remainder == 0:
         quit(extend_menu)
 
