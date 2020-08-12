@@ -448,6 +448,13 @@ def search_input(event=None):
     for item in SearchResults.list_of_places:
         list_box.insert(tk.END, item)
     # print(list_box.size())
+    def get_location_input():
+        location = list_box.get(tk.ACTIVE)
+        print(location)
+    
+    get_location = AddButtons(root, "click me", width=10, command=get_location_input)
+    get_location.create_buttons(0.8,bd=0)
+    
 
 
 def extend_menubar():
@@ -473,7 +480,7 @@ def extend_menubar():
         favourites_label = tk.Label(
             extend_menu, text="Favourites", font=("Calibre", "20"), bg="#71879C"
         )
-        favourites_label.pack(side=tk.TOP, pady=8)
+        favourites_label.pack(side=tk.TOP, pady=12)
 
         graphs_label = tk.Label(
             extend_menu, text="Graphs", font=("Calibre", "20"), bg="#71879C"
@@ -488,7 +495,7 @@ def extend_menubar():
         signout_label = tk.Label(
             extend_menu, text="Sign out", font=("Calibre", "20"), bg="#71879C"
         )
-        signout_label.pack(side=tk.BOTTOM, pady=8)
+        signout_label.pack(side=tk.BOTTOM, pady=12)
         
     elif remainder == 0:
         quit(extend_menu)
