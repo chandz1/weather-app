@@ -452,7 +452,7 @@ def search_input(event=None):
         location = list_box.get(tk.ACTIVE)
         print(location)
     
-    get_location = AddButtons(root, "click me", width=10, command=get_location_input)
+    get_location = AddButtons(root, "ok", width=10, command=get_location_input)
     get_location.create_buttons(0.8,bd=0)
     
 
