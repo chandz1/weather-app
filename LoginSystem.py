@@ -5,6 +5,8 @@ from PIL import Image, ImageTk
 import smtplib
 import SendMail
 import SearchResults
+import UrlScrapper
+import WeatherForecast
 import Getlocation
 import json
 import time
@@ -41,7 +43,7 @@ class TopLevel:
 
 
 class AddButtons:
-    def __init__(self, master, text, width, command=None, height=1, font=None):
+    def __init__(self, master, text, width=None, command=None, height=1, font=None):
         self.master = master
         self.text = text
         self.width = width
@@ -434,26 +436,46 @@ def confirm_dialog(window):
 
 def search_input(event=None):
     global list_box
-    SearchResults.list_of_places.clear()
-    try:
-        quit(list_box)
-    except Exception:
-        pass
-    SearchResults.place = search_bar.get()
-    SearchResults.get_url()
-    list_box = tk.Listbox(
-        root, width=80, height=20, bd=0, bg="#f7f7f7", selectbackground="#0080ff"
-    )
-    list_box.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-    for item in SearchResults.list_of_places:
-        list_box.insert(tk.END, item)
-    # print(list_box.size())
-    def get_location_input():
-        location = list_box.get(tk.ACTIVE)
-        print(location)
-    
-    get_location = AddButtons(root, "ok", width=10, command=get_location_input)
-    get_location.create_buttons(0.8,bd=0)
+    global no_place
+    global location
+    if search_bar.get() != '':
+        try:
+            quit(no_place)
+        except Exception:
+            pass
+        SearchResults.list_of_places.clear()
+        try:
+            quit(list_box)
+        except Exception:
+            pass
+        SearchResults.place = search_bar.get()
+        UrlScrapper.place = search_bar.get()
+        SearchResults.get_url()
+        list_box = tk.Listbox(
+            root, width=80, height=20, bd=0, bg="#f7f7f7", selectbackground="#0080ff"
+        )
+        list_box.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        for item in SearchResults.list_of_places:
+            list_box.insert(tk.END, item)
+        # print(list_box.size())
+        def get_location_input():
+            global location
+            location = list_box.get(tk.ACTIVE)
+            index = SearchResults.list_of_places.index(location)
+            UrlScrapper.index = index
+            UrlScrapper.scrape_url()
+            WeatherForecast.url_prefix = UrlScrapper.url_prefix
+            WeatherForecast.weatherData()
+        
+        get_location = AddButtons(root, "OK", command=get_location_input)
+        get_location.create_buttons(0.8, bd=0)
+    else:
+        try:
+            quit(no_place)
+        except Exception:
+            pass
+        no_place = tk.Label(title_bar, text='Please Enter A Valid Place!', fg='yellow', bg='#71879C', font=('Calibre', '16'))
+        no_place.pack(side=tk.RIGHT)
     
 
 
@@ -529,6 +551,7 @@ def main_interface():
     global search_bar
     global menu_bar_width
     global menu_bar_height
+    global title_bar
     bg_image = ImageTk.PhotoImage(
         Image.open(f"Background Pics/Stormy{screen_width}x{screen_height}.jpg")
     )
@@ -561,6 +584,9 @@ def main_interface():
         title_bar, bd=0, bg="#71879C", image=arrow_image, command=extend_menubar
     )
     arrow_button.pack(side=tk.LEFT)
+
+    quit_button = AddButtons(canvas, "Quit", 10, lambda: confirm_dialog(root))
+    quit_button.create_buttons(0.98, 0.969)
     # title_bar.create_text(
     #     screen_width / 4,
     #     20,
