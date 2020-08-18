@@ -11,7 +11,6 @@ numDays = 0
 url_prefix = ''
 a = 1
 b = 0
-c = 1
 d = 0
 e = 0
 
@@ -56,8 +55,10 @@ def weatherData():
     global c
     global d
     global e
-    src = requests.get(
-            f'https://www.timeanddate.com{url_prefix}/ext').text
+    if userCountry == None and userCity == None:
+        src = requests.get(f'https://www.timeanddate.com{url_prefix}/ext').text
+    elif userCity != None and userCountry != None:
+        src = requests.get(f'https://www.timeanddate.com/weather/{userCountry}/{userCity}/ext').text
     content = BeautifulSoup(src, 'html.parser')
     table = content.find('table', id='wt-ext')
     twoWeeks = table.find('tbody')
@@ -75,10 +76,16 @@ def weatherData():
         print(impData[a].text)
         print(impData[a + 3].text)
         print(impData[a + 5].text)
-        print(desc[b].text)
+        print(desc[d].text)
         print(secondaryData[b].text)
-        print(secondaryData[c].text)
-        a += 12
         b += 1
-        c += 2
+        print(secondaryData[b].text)
+        a += 12
+        b += 2
+        d += 1
         print()
+
+
+if __name__ == '__main__':
+    defVar()
+    weatherData()
