@@ -11,7 +11,6 @@ import WeatherForecast
 import Getlocation
 import json
 import time
-import multiprocessing as mp
 
 # Lists & Variables:
 login_entries = []

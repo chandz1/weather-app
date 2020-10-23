@@ -52,13 +52,13 @@ def weatherData():
     global numDays
     global a
     global b
-    global c
     global d
     global e
     if userCountry == None and userCity == None:
         src = requests.get(f'https://www.timeanddate.com{url_prefix}/ext').text
     elif userCity != None and userCountry != None:
-        src = requests.get(f'https://www.timeanddate.com/weather/{userCountry}/{userCity}/ext').text
+        src = requests.get(
+            f'https://www.timeanddate.com/weather/{userCountry}/{userCity}/ext').text
     content = BeautifulSoup(src, 'html.parser')
     table = content.find('table', id='wt-ext')
     twoWeeks = table.find('tbody')
