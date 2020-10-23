@@ -32,7 +32,6 @@ list_box = None
 extend_menu = None
 
 
-
 # Classes:
 class TopLevel:
     def __init__(self, title, geometry):
@@ -563,6 +562,12 @@ def primary_window():
     root.mainloop()
 
 
+def sign_out():
+    quit(root)
+    start_root_window()
+    primary_window()
+
+
 def main_interface():
     global search_bar
     global menu_bar_width
@@ -639,7 +644,7 @@ def main_interface():
     settings_button.pack(side=tk.BOTTOM, pady=4)
 
     signout_button = tk.Button(
-        menu_bar, bd=0, text="signout", bg="#71879C", image=account_image
+        menu_bar, bd=0, text="signout", bg="#71879C", image=account_image, command=sign_out
     )
     signout_button.pack(side=tk.BOTTOM, pady=4)
 
@@ -674,7 +679,12 @@ start_root_window()
 primary_window()
 
 # Main Interface:
-if logged_in is True or guest is True:
-    time.sleep(1)
-    start_root_window()
-    main_interface()
+while True:
+    if logged_in is True or guest is True:
+        if guest is True:
+            guest = False
+        else:
+            logged_in = False
+        time.sleep(1)
+        start_root_window()
+        main_interface()
