@@ -27,6 +27,10 @@ guest = False
 func_called = 2
 screen_width = GetSystemMetrics(0)
 screen_height = GetSystemMetrics(1)
+no_place = None
+list_box = None
+extend_menu = None
+
 
 
 # Classes:
