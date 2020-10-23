@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+from win32api import GetSystemMetrics
 import smtplib
 import SendMail
 import SearchResults
@@ -25,6 +26,8 @@ default_location = Getlocation.city
 logged_in = False
 guest = False
 func_called = 2
+screen_width = GetSystemMetrics(0)
+screen_height = GetSystemMetrics(1)
 
 
 # Classes:
@@ -52,7 +55,8 @@ class AddButtons:
         self.font = font
 
     def create_buttons(self, rely=0.5, relx=0.5, image=None, bd=1):
-        button = tk.Button(self.master,
+        button = tk.Button(
+            self.master,
             text=self.text,
             width=self.width,
             height=self.height,
@@ -60,7 +64,8 @@ class AddButtons:
             command=self.command,
             font=self.font,
             image=image,
-            bd=bd,)
+            bd=bd,
+        )
         button.place(relx=relx, rely=rely, anchor=tk.CENTER)
 
 
@@ -75,7 +80,8 @@ class AddCanvas:
         canvas = tk.Canvas(self.master, width=self.width, height=self.height)
         canvas.pack(expand=True, fill=tk.BOTH, side=side)
         if image is not None:
-            canvas.create_image(screen_width / 2, screen_height / 2, image=image)
+            canvas.create_image(
+                screen_width / 2, screen_height / 2, image=image)
 
 
 # Functions:
@@ -84,20 +90,19 @@ def quit(*window):
         instance.destroy()
 
 
-def start_root_window(window_width=None, window_height=None, window_title="The Weather Forecast App"):
+def start_root_window(
+    window_width=None, window_height=None, window_title="The Weather Forecast App"
+):
     global root
-    global screen_width
-    global screen_height
     root = tk.Tk()
     root.title(window_title)
     root.attributes("-fullscreen", True)
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
     # if window_width is None and window_height is None:
     #     root.geometry('{}x{}'.format(screen_width, screen_height))
     # else:
     #     root.geometry('{}x{}'.format(window_width, window_height))
     # root.resizable(False, False)
+
 
 def write_json(data, filename="loginData.json"):
     with open(filename, "w") as f:
@@ -133,7 +138,8 @@ def login_clicked():
     login_entries.append(username_input)
     login_entries.append(password_input)
 
-    forgot_password = AddButtons(top_level, "Forgot password?", 12, forgot_passkey)
+    forgot_password = AddButtons(
+        top_level, "Forgot password?", 12, forgot_passkey)
     forgot_password.create_buttons(0.7, 0.25)
 
     login_btn = AddButtons(top_level, "Login", 10, get_login_input)
@@ -162,7 +168,9 @@ def login():
         comp_password = comparitive_info.get("Password")
         if real_username == comp_username and real_password == comp_password:
             logged_in = True
-            completeLabel = tk.Label(top_level, text="You Have Successfully Been Logged In.", fg="green")
+            completeLabel = tk.Label(
+                top_level, text="You Have Successfully Been Logged In.", fg="green"
+            )
             completeLabel.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
             top_level.update_idletasks()
             time.sleep(1.5)
@@ -173,7 +181,9 @@ def login():
             except Exception:
                 pass
             try:
-                incorrect_label = tk.Label(top_level, text="Incorrect Username Or Password.", fg="red")
+                incorrect_label = tk.Label(
+                    top_level, text="Incorrect Username Or Password.", fg="red"
+                )
                 incorrect_label.place(relx=0.5, rely=0.125, anchor=tk.CENTER)
             except tk.TclError:
                 pass
@@ -191,8 +201,9 @@ def signup():
     signup_window = TopLevel("Sign Up", "400x325")
     signup_window.create_toplevel(root)
 
-    username_label = tk.Label(top_level, text="Username:", font=("Calibre", "12"))
-    username_label.place(relx=0.175, rely=0.075, anchor=tk.CENTER)
+    username_label = tk.Label(
+        top_level, text="Username:", font=("Calibre", "12"))
+    username_label.place(relx=0.163, rely=0.075, anchor=tk.CENTER)
 
     new_user_input = tk.Entry(top_level)
     new_user_input.place(relx=0.5, rely=0.155, anchor=tk.CENTER, width=350)
@@ -203,14 +214,17 @@ def signup():
     new_email_input = tk.Entry(top_level)
     new_email_input.place(relx=0.5, rely=0.305, anchor=tk.CENTER, width=350)
 
-    password_label = tk.Label(top_level, text="Password:", font=("Calibre", "12"))
-    password_label.place(relx=0.16, rely=0.38, anchor=tk.CENTER)
+    password_label = tk.Label(
+        top_level, text="Password:", font=("Calibre", "12"))
+    password_label.place(relx=0.155, rely=0.38, anchor=tk.CENTER)
 
     new_passkey_input = tk.Entry(top_level)
     new_passkey_input.place(relx=0.5, rely=0.455, anchor=tk.CENTER, width=350)
 
-    retype_pass_label = tk.Label(top_level, text="Confirm Password:", font=("Calibre", "12"))
-    retype_pass_label.place(relx=0.25, rely=0.53, anchor=tk.CENTER)
+    retype_pass_label = tk.Label(
+        top_level, text="Confirm Password:", font=("Calibre", "12")
+    )
+    retype_pass_label.place(relx=0.226, rely=0.53, anchor=tk.CENTER)
 
     retype_pass_input = tk.Entry(top_level)
     retype_pass_input.place(relx=0.5, rely=0.605, anchor=tk.CENTER, width=350)
@@ -221,7 +235,8 @@ def signup():
     signup_entries.append(new_passkey_input)
     signup_entries.append(retype_pass_input)
 
-    signup_button = AddButtons(top_level, "Create an account", 20, get_signup_input)
+    signup_button = AddButtons(
+        top_level, "Create an account", 20, get_signup_input)
     signup_button.create_buttons(0.8)
 
     top_level.bind("<Return>", get_signup_input)
@@ -279,49 +294,70 @@ def signup_clicked():
                     verification_window.geometry("300x200")
                     verification_window.resizable(False, False)
 
-                    mail_sent = tk.Label(verification_window, text=message, font=("Calibre", "12"))
+                    mail_sent = tk.Label(
+                        verification_window, text=message, font=(
+                            "Calibre", "12")
+                    )
                     mail_sent.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
-                    verification_box = tk.Entry(verification_window, font=("Calibre", "16"))
-                    verification_box.place(relx=0.5, rely=0.7, anchor=tk.CENTER, width=150)
+                    verification_box = tk.Entry(
+                        verification_window, font=("Calibre", "16")
+                    )
+                    verification_box.place(
+                        relx=0.5, rely=0.7, anchor=tk.CENTER, width=150
+                    )
 
                     verification_window.bind("<Return>", verify_code)
 
                 except smtplib.SMTPRecipientsRefused:
                     error_exception()
-                    bad_mailid = tk.Label(top_level,
+                    bad_mailid = tk.Label(
+                        top_level,
                         text="Invalid MailId!",
                         font=("Calibre", "10"),
-                        fg="red",)
+                        fg="red",
+                    )
                     bad_mailid.place(relx=0.78, rely=0.235, anchor=tk.CENTER)
                     # print('invalid MailId')
 
                 except smtplib.socket.gaierror:
-                    messagebox.showwarning(title="Internet Connection Error",
-                        message="Check You Internet Connection.",)
+                    messagebox.showwarning(
+                        title="Internet Connection Error",
+                        message="Check You Internet Connection.",
+                    )
                     # print('Check your internet connection.')
             elif comp_pass != comp_confirm_pass:
                 error_exception()
-                diff_passwords = tk.Label(top_level,
+                diff_passwords = tk.Label(
+                    top_level,
                     text="Passwords Don't Match!",
                     font=("Calibre", "10"),
-                    fg="red",)
+                    fg="red",
+                )
                 diff_passwords.place(relx=0.75, rely=0.535, anchor=tk.CENTER)
         elif comp_username in existing_usernames:
             error_exception()
-            used_username = tk.Label(top_level, text="Username Is Use!", font=("Calibre", "10"), fg="red")
+            used_username = tk.Label(
+                top_level, text="Username Is Use!", font=("Calibre", "10"), fg="red"
+            )
             used_username.place(relx=0.81, rely=0.08, anchor=tk.CENTER)
         elif comp_username == "":
             error_exception()
-            no_username = tk.Label(top_level, text="Enter A Username!", font=("Calibre", "10"), fg="red")
+            no_username = tk.Label(
+                top_level, text="Enter A Username!", font=("Calibre", "10"), fg="red"
+            )
             no_username.place(relx=0.81, rely=0.08, anchor=tk.CENTER)
     elif comp_mailid == existing_mail:
         error_exception()
-        used_mailid = tk.Label(top_level, text="Mail-Id In Use!", font=("Calibre", "10"), fg="red")
+        used_mailid = tk.Label(
+            top_level, text="Mail-Id In Use!", font=("Calibre", "10"), fg="red"
+        )
         used_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
     elif comp_mailid == "":
         error_exception()
-        no_mailid = tk.Label(top_level, text="Enter Your Mail-Id!", font=("Calibre", "10"), fg="red")
+        no_mailid = tk.Label(
+            top_level, text="Enter Your Mail-Id!", font=("Calibre", "10"), fg="red"
+        )
         no_mailid.place(relx=0.81, rely=0.235, anchor=tk.CENTER)
 
 
@@ -329,20 +365,28 @@ def verify_code(event=None):
     comp_code = int(verification_box.get())
     if comp_code == SendMail.verificationCode:
         quit(verification_window)
-        acc_created = tk.Label(top_level,
+        acc_created = tk.Label(
+            top_level,
             text="Your Account Has Been Created.",
             font=("Calibre", "12"),
-            fg="green",)
+            fg="green",
+        )
         acc_created.place(relx=0.5, rely=0.92, anchor=tk.CENTER)
-        login_info.update([("Username", comp_username),
+        login_info.update(
+            [
+                ("Username", comp_username),
                 ("Password", comp_pass),
-                ("MailId", comp_mailid),])
+                ("MailId", comp_mailid),
+            ]
+        )
         save_file()
     else:
-        wrong_code = tk.Label(verification_window,
+        wrong_code = tk.Label(
+            verification_window,
             text="Check Your Code!",
             font=("Calibre", "13"),
-            fg="red",)
+            fg="red",
+        )
         wrong_code.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
 
 
@@ -391,7 +435,8 @@ def confirm_dialog(window):
     ask_label.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
     no_btn = tk.Button(top_level, text="Cancel", width=7, command=cancel_quit)
     no_btn.place(relx=0.35, rely=0.65, anchor=tk.CENTER)
-    yes_btn = tk.Button(top_level, text="Exit", width=7, command=lambda: quit(root))
+    yes_btn = tk.Button(top_level, text="Exit", width=7,
+                        command=lambda: quit(root))
     yes_btn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
@@ -399,7 +444,7 @@ def search_input(event=None):
     global list_box
     global no_place
     global location
-    if search_bar.get() != '':
+    if search_bar.get() != "":
         try:
             quit(no_place)
         except Exception:
@@ -412,11 +457,14 @@ def search_input(event=None):
         SearchResults.place = search_bar.get()
         UrlScrapper.place = search_bar.get()
         SearchResults.get_url()
-        list_box = tk.Listbox(root, width=80, height=20, bd=0, bg="#f7f7f7", selectbackground="#0080ff")
+        list_box = tk.Listbox(
+            root, width=80, height=20, bd=0, bg="#f7f7f7", selectbackground="#0080ff"
+        )
         list_box.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         for item in SearchResults.list_of_places:
             list_box.insert(tk.END, item)
         # print(list_box.size())
+
         def get_location_input():
             global location
             location = list_box.get(tk.ACTIVE)
@@ -425,7 +473,7 @@ def search_input(event=None):
             UrlScrapper.scrape_url()
             WeatherForecast.url_prefix = UrlScrapper.url_prefix
             WeatherForecast.weatherData()
-        
+
         get_location = AddButtons(root, "OK", command=get_location_input)
         get_location.create_buttons(0.8, bd=0)
     else:
@@ -433,9 +481,14 @@ def search_input(event=None):
             quit(no_place)
         except Exception:
             pass
-        no_place = tk.Label(title_bar, text='Please Enter A Valid Place!', fg='yellow', bg='#71879C', font=('Calibre', '16'))
+        no_place = tk.Label(
+            title_bar,
+            text="Please Enter A Valid Place!",
+            fg="yellow",
+            bg="#71879C",
+            font=("Calibre", "16"),
+        )
         no_place.pack(side=tk.RIGHT)
-    
 
 
 def extend_menubar():
@@ -445,27 +498,39 @@ def extend_menubar():
     remainder = func_called % 2
     if remainder != 0:
         extend_menu = tk.Frame(bg="#71879C")
-        canvas.create_window(38,
+        canvas.create_window(
+            38,
             40,
             anchor=tk.NW,
             window=extend_menu,
             width=menu_bar_width * 4,
-            height=menu_bar_height,)
-        home_label = tk.Label(extend_menu, text="Home", font=("Calibre", "20"), bg="#71879C")
+            height=menu_bar_height,
+        )
+        home_label = tk.Label(
+            extend_menu, text="Home", font=("Calibre", "20"), bg="#71879C"
+        )
         home_label.pack(side=tk.TOP)
 
-        favourites_label = tk.Label(extend_menu, text="Favourites", font=("Calibre", "20"), bg="#71879C")
+        favourites_label = tk.Label(
+            extend_menu, text="Favourites", font=("Calibre", "20"), bg="#71879C"
+        )
         favourites_label.pack(side=tk.TOP, pady=12)
 
-        graphs_label = tk.Label(extend_menu, text="Graphs", font=("Calibre", "20"), bg="#71879C")
+        graphs_label = tk.Label(
+            extend_menu, text="Graphs", font=("Calibre", "20"), bg="#71879C"
+        )
         graphs_label.pack(side=tk.TOP)
 
-        settings_label = tk.Label(extend_menu, text="Settings", font=("Calibre", "20"), bg="#71879C")
+        settings_label = tk.Label(
+            extend_menu, text="Settings", font=("Calibre", "20"), bg="#71879C"
+        )
         settings_label.pack(side=tk.BOTTOM)
 
-        signout_label = tk.Label(extend_menu, text="Sign out", font=("Calibre", "20"), bg="#71879C")
+        signout_label = tk.Label(
+            extend_menu, text="Sign out", font=("Calibre", "20"), bg="#71879C"
+        )
         signout_label.pack(side=tk.BOTTOM, pady=12)
-        
+
     elif remainder == 0:
         quit(extend_menu)
 
@@ -474,15 +539,18 @@ def primary_window():
     bg_image = ImageTk.PhotoImage(Image.open("CloudsBg.gif"))
     bg = AddCanvas(root)
     bg.create_canvas(image=bg_image)
-    canvas.create_text(screen_width / 2,
+    canvas.create_text(
+        screen_width / 2,
         screen_height / 4,
         anchor=tk.CENTER,
         font=("Calibre", "28"),
-        text="Weather Forecast - Login",)
+        text="Weather Forecast - Login",
+    )
 
     btn1 = AddButtons(canvas, "Login", 20, command=login_clicked)
     btn2 = AddButtons(canvas, "Sign Up", 20, command=signup)
-    btn3 = AddButtons(canvas, "Continue Without Sign-In", 20, command=guest_login)
+    btn3 = AddButtons(canvas, "Continue Without Sign-In",
+                      20, command=guest_login)
     btn4 = AddButtons(canvas, "Quit", 10, lambda: confirm_dialog(root))
     btn1.create_buttons(0.45)
     btn2.create_buttons(0.5)
@@ -496,74 +564,106 @@ def main_interface():
     global search_bar
     global menu_bar_width
     global menu_bar_height
+    global title_bar_height
     global title_bar
-    bg_image = ImageTk.PhotoImage(Image.open(f"Background Pics/Stormy{screen_width}x{screen_height}.jpg"))
+    global bg_image
+
+    bg_image = ImageTk.PhotoImage(
+        Image.open(f"Background Pics/Stormy{screen_width}x{screen_height}.jpg")
+    )
     arrow_image = ImageTk.PhotoImage(Image.open("Buttons/ArrowButton.png"))
     search_image = ImageTk.PhotoImage(Image.open("Buttons/SearchButton.png"))
-    settings_image = ImageTk.PhotoImage(Image.open("Buttons/SettingsButton.png"))
+    settings_image = ImageTk.PhotoImage(
+        Image.open("Buttons/SettingsButton.png"))
     account_image = ImageTk.PhotoImage(Image.open("Buttons/AccountButton.png"))
     home_image = ImageTk.PhotoImage(Image.open("Buttons/HomeButton.png"))
-    favorites_image = ImageTk.PhotoImage(Image.open("Buttons/FavoritesButton.png"))
+    favorites_image = ImageTk.PhotoImage(
+        Image.open("Buttons/FavoritesButton.png"))
     graphs_image = ImageTk.PhotoImage(Image.open("Buttons/GraphsButton.png"))
 
     bg = AddCanvas(root)
-    bg.create_canvas(image=bg_image)
+    bg.create_canvas()
 
     title_bar_height = 40
     menu_bar_height = screen_height - title_bar_height - 2
     menu_bar_width = 38
 
     title_bar = tk.Frame(bg="#71879C")
-    canvas.create_window(0,
+    canvas.create_window(
+        0,
         0,
         anchor=tk.NW,
         window=title_bar,
         width=screen_width,
-        height=title_bar_height,)
+        height=title_bar_height,
+    )
 
-    arrow_button = tk.Button(title_bar, bd=0, bg="#71879C", image=arrow_image, command=extend_menubar)
+    arrow_button = tk.Button(
+        title_bar, bd=0, bg="#71879C", image=arrow_image, command=extend_menubar
+    )
     arrow_button.pack(side=tk.LEFT)
 
-    quit_button = AddButtons(canvas, "Quit", 10, lambda: confirm_dialog(root))
-    quit_button.create_buttons(0.98, 0.969)
-    # title_bar.create_text(
-    #     screen_width / 4,
-    #     20,
-    #     anchor=tk.CENTER,
-    #     font=("Calibre", "14"),
-    #     text="The Weather Forecast App",
-    # )
     search_bar = tk.Entry(title_bar, font=("Calibre", "22"), width=17)
     search_bar.pack(side=tk.RIGHT)
     search_bar.bind("<Return>", search_input)
 
-    search_button = tk.Button(title_bar, bd=0, image=search_image, command=search_input)
+    search_button = tk.Button(
+        title_bar, bd=0, image=search_image, command=search_input)
     search_button.pack(side=tk.RIGHT, padx=2)
 
     menu_bar = tk.Frame(bg="#71879C")
-    canvas.create_window(0,
+    canvas.create_window(
+        0,
         40,
         anchor=tk.NW,
         window=menu_bar,
         width=menu_bar_width,
-        height=menu_bar_height,)
+        height=menu_bar_height,
+    )
 
     home_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=home_image)
     home_button.pack(side=tk.TOP, pady=4)
 
-    bookmarks_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=favorites_image)
+    bookmarks_button = tk.Button(
+        menu_bar, bd=0, bg="#71879C", image=favorites_image)
     bookmarks_button.pack(side=tk.TOP, pady=4)
 
     graph_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=graphs_image)
     graph_button.pack(side=tk.TOP, pady=4)
 
-    settings_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=settings_image)
+    settings_button = tk.Button(
+        menu_bar, bd=0, bg="#71879C", image=settings_image)
     settings_button.pack(side=tk.BOTTOM, pady=4)
 
-    signout_button = tk.Button(menu_bar, bd=0, text="signout", bg="#71879C", image=account_image)
+    signout_button = tk.Button(
+        menu_bar, bd=0, text="signout", bg="#71879C", image=account_image
+    )
     signout_button.pack(side=tk.BOTTOM, pady=4)
 
+    home()
+
     root.mainloop()
+
+
+def home():
+    frame = tk.Frame()
+    canvas.create_window(
+        38,
+        40,
+        anchor=tk.NW,
+        window=frame,
+        width=screen_width - menu_bar_width,
+        height=screen_height - title_bar_height,
+    )
+
+    new_canvas = tk.Canvas(
+        frame,
+        width=screen_width - menu_bar_width,
+        height=screen_height - title_bar_height,
+    )
+    new_canvas.pack(anchor=tk.CENTER)
+    new_canvas.create_image(
+        screen_width / 2, screen_height / 2, image=bg_image)
 
 
 # Initial Log-In Window:
