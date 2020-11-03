@@ -10,6 +10,7 @@ list_of_places = []
 
 
 def get_url():
+    list_of_places.clear()
     get_access = requests.get(
         f"https://www.timeanddate.com/weather/?query={place}"
     ).text
@@ -24,6 +25,3 @@ def get_url():
             list_of_places.append(edited_name)
         else:
             list_of_places.append(unedited_name)
-
-
-get_url()

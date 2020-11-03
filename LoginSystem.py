@@ -21,7 +21,7 @@ signup_comp = {}
 pass_check = {}
 existing_usernames = []
 existing_mails = []
-default_location = Getlocation.city
+default_location = Getlocation.get_location()
 logged_in = False
 guest = False
 func_called = 2
@@ -82,8 +82,7 @@ class AddCanvas:
         canvas = tk.Canvas(self.master, width=self.width, height=self.height)
         canvas.pack(expand=True, fill=tk.BOTH, side=side)
         if image is not None:
-            canvas.create_image(
-                screen_width / 2, screen_height / 2, image=image)
+            canvas.create_image(screen_width / 2, screen_height / 2, image=image)
 
 
 # Functions:
@@ -140,8 +139,7 @@ def login_clicked():
     login_entries.append(username_input)
     login_entries.append(password_input)
 
-    forgot_password = AddButtons(
-        top_level, "Forgot password?", 12, forgot_passkey)
+    forgot_password = AddButtons(top_level, "Forgot password?", 12, forgot_passkey)
     forgot_password.create_buttons(0.7, 0.25)
 
     login_btn = AddButtons(top_level, "Login", 10, get_login_input)
@@ -203,8 +201,7 @@ def signup():
     signup_window = TopLevel("Sign Up", "400x325")
     signup_window.create_toplevel(root)
 
-    username_label = tk.Label(
-        top_level, text="Username:", font=("Calibre", "12"))
+    username_label = tk.Label(top_level, text="Username:", font=("Calibre", "12"))
     username_label.place(relx=0.163, rely=0.075, anchor=tk.CENTER)
 
     new_user_input = tk.Entry(top_level)
@@ -216,8 +213,7 @@ def signup():
     new_email_input = tk.Entry(top_level)
     new_email_input.place(relx=0.5, rely=0.305, anchor=tk.CENTER, width=350)
 
-    password_label = tk.Label(
-        top_level, text="Password:", font=("Calibre", "12"))
+    password_label = tk.Label(top_level, text="Password:", font=("Calibre", "12"))
     password_label.place(relx=0.155, rely=0.38, anchor=tk.CENTER)
 
     new_passkey_input = tk.Entry(top_level)
@@ -237,8 +233,7 @@ def signup():
     signup_entries.append(new_passkey_input)
     signup_entries.append(retype_pass_input)
 
-    signup_button = AddButtons(
-        top_level, "Create an account", 20, get_signup_input)
+    signup_button = AddButtons(top_level, "Create an account", 20, get_signup_input)
     signup_button.create_buttons(0.8)
 
     top_level.bind("<Return>", get_signup_input)
@@ -297,8 +292,7 @@ def signup_clicked():
                     verification_window.resizable(False, False)
 
                     mail_sent = tk.Label(
-                        verification_window, text=message, font=(
-                            "Calibre", "12")
+                        verification_window, text=message, font=("Calibre", "12")
                     )
                     mail_sent.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
 
@@ -437,8 +431,7 @@ def confirm_dialog(window):
     ask_label.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
     no_btn = tk.Button(top_level, text="Cancel", width=7, command=cancel_quit)
     no_btn.place(relx=0.35, rely=0.65, anchor=tk.CENTER)
-    yes_btn = tk.Button(top_level, text="Exit", width=7,
-                        command=lambda: quit(root))
+    yes_btn = tk.Button(top_level, text="Exit", width=7, command=lambda: quit(root))
     yes_btn.place(relx=0.65, rely=0.65, anchor=tk.CENTER)
 
 
@@ -451,7 +444,7 @@ def search_input(event=None):
             quit(no_place)
         except Exception:
             pass
-        SearchResults.list_of_places.clear()
+        # SearchResults.list_of_places.clear()
         try:
             quit(list_box)
         except Exception:
@@ -551,8 +544,7 @@ def primary_window():
 
     btn1 = AddButtons(canvas, "Login", 20, command=login_clicked)
     btn2 = AddButtons(canvas, "Sign Up", 20, command=signup)
-    btn3 = AddButtons(canvas, "Continue Without Sign-In",
-                      20, command=guest_login)
+    btn3 = AddButtons(canvas, "Continue Without Sign-In", 20, command=guest_login)
     btn4 = AddButtons(canvas, "Quit", 10, lambda: confirm_dialog(root))
     btn1.create_buttons(0.45)
     btn2.create_buttons(0.5)
@@ -581,12 +573,10 @@ def main_interface():
     )
     arrow_image = ImageTk.PhotoImage(Image.open("Buttons/ArrowButton.png"))
     search_image = ImageTk.PhotoImage(Image.open("Buttons/SearchButton.png"))
-    settings_image = ImageTk.PhotoImage(
-        Image.open("Buttons/SettingsButton.png"))
+    settings_image = ImageTk.PhotoImage(Image.open("Buttons/SettingsButton.png"))
     account_image = ImageTk.PhotoImage(Image.open("Buttons/AccountButton.png"))
     home_image = ImageTk.PhotoImage(Image.open("Buttons/HomeButton.png"))
-    favorites_image = ImageTk.PhotoImage(
-        Image.open("Buttons/FavoritesButton.png"))
+    favorites_image = ImageTk.PhotoImage(Image.open("Buttons/FavoritesButton.png"))
     graphs_image = ImageTk.PhotoImage(Image.open("Buttons/GraphsButton.png"))
 
     bg = AddCanvas(root)
@@ -615,8 +605,7 @@ def main_interface():
     search_bar.pack(side=tk.RIGHT)
     search_bar.bind("<Return>", search_input)
 
-    search_button = tk.Button(
-        title_bar, bd=0, image=search_image, command=search_input)
+    search_button = tk.Button(title_bar, bd=0, image=search_image, command=search_input)
     search_button.pack(side=tk.RIGHT, padx=2)
 
     menu_bar = tk.Frame(bg="#71879C")
@@ -632,19 +621,22 @@ def main_interface():
     home_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=home_image)
     home_button.pack(side=tk.TOP, pady=4)
 
-    bookmarks_button = tk.Button(
-        menu_bar, bd=0, bg="#71879C", image=favorites_image)
+    bookmarks_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=favorites_image)
     bookmarks_button.pack(side=tk.TOP, pady=4)
 
     graph_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=graphs_image)
     graph_button.pack(side=tk.TOP, pady=4)
 
-    settings_button = tk.Button(
-        menu_bar, bd=0, bg="#71879C", image=settings_image)
+    settings_button = tk.Button(menu_bar, bd=0, bg="#71879C", image=settings_image)
     settings_button.pack(side=tk.BOTTOM, pady=4)
 
     signout_button = tk.Button(
-        menu_bar, bd=0, text="signout", bg="#71879C", image=account_image, command=sign_out
+        menu_bar,
+        bd=0,
+        text="signout",
+        bg="#71879C",
+        image=account_image,
+        command=sign_out,
     )
     signout_button.pack(side=tk.BOTTOM, pady=4)
 
@@ -670,8 +662,7 @@ def home():
         height=screen_height - title_bar_height,
     )
     new_canvas.pack(anchor=tk.CENTER)
-    new_canvas.create_image(
-        screen_width / 2, screen_height / 2, image=bg_image)
+    new_canvas.create_image(screen_width / 2, screen_height / 2, image=bg_image)
 
 
 # Initial Log-In Window:
