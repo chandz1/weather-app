@@ -334,7 +334,7 @@ def signup_clicked():
         elif comp_username in existing_usernames:
             error_exception()
             used_username = tk.Label(
-                top_level, text="Username Is Use!", font=("Calibre", "10"), fg="red"
+                top_level, text="Username Is In Use!", font=("Calibre", "10"), fg="red"
             )
             used_username.place(relx=0.81, rely=0.08, anchor=tk.CENTER)
         elif comp_username == "":
