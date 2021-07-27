@@ -1,0 +1,135 @@
+Wed: 21 Jul
+40°C
+34°C
+19 km/h
+54%
+Clearing skies.
+55 °C
+6%
+
+Thu: 22 Jul
+42°C
+36°C
+16 km/h
+43%
+Sunny.
+53 °C
+4%
+
+Fri: 23 Jul
+42°C
+34°C
+16 km/h
+38%
+Sunny.
+49 °C
+6%
+
+Sat: 24 Jul
+40°C
+33°C
+14 km/h
+40%
+Sunny.
+46 °C
+6%
+
+Sun: 25 Jul
+39°C
+33°C
+16 km/h
+50%
+Mostly sunny.
+49 °C
+6%
+
+Mon: 26 Jul
+41°C
+33°C
+18 km/h
+43%
+Sunny.
+50 °C
+6%
+
+Tue: 27 Jul
+46°C
+33°C
+21 km/h
+15%
+Afternoon clouds.
+45 °C
+1%
+
+Wed: 28 Jul
+42°C
+34°C
+17 km/h
+44%
+Overcast.
+49 °C
+1%
+
+Thu: 29 Jul
+42°C
+34°C
+17 km/h
+32%
+Broken clouds.
+45 °C
+1%
+
+Fri: 30 Jul
+41°C
+34°C
+14 km/h
+27%
+Scattered clouds.
+42 °C
+1%
+
+Sat: 31 Jul
+41°C
+34°C
+18 km/h
+36%
+Broken clouds.
+47 °C
+4%
+
+Sun: 1 Aug
+43°C
+34°C
+16 km/h
+23%
+Morning clouds.
+41 °C
+3%
+
+Mon: 2 Aug
+43°C
+34°C
+15 km/h
+15%
+Scattered clouds.
+39 °C
+5%
+
+Tue: 3 Aug
+43°C
+34°C
+23 km/h
+15%
+Clearing skies.
+39 °C
+4%
+
+Wed: 4 Aug
+44°C
+34°C
+26 km/h
+14%
+Sunny.
+39 °C
+4%
+

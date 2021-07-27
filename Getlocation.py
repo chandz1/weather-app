@@ -9,4 +9,9 @@ def get_location():
     geo_req = requests.get(send_url)
     geo_json = json.loads(geo_req.text)
     city = geo_json["city"]
-    return city
+    country = geo_json["country_name"]
+    return city, country
+
+
+if __name__ == "__main__":
+    print(get_location())

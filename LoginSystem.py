@@ -664,6 +664,22 @@ def home():
     new_canvas.pack(anchor=tk.CENTER)
     new_canvas.create_image(screen_width / 2, screen_height / 2, image=bg_image)
 
+    new_canvas.create_oval(180, 200, 400, 420)
+    new_canvas.create_oval(440, 200, 660, 420)
+    new_canvas.create_oval(700, 200, 920, 420)
+    new_canvas.create_oval(960, 200, 1180, 420)
+    new_canvas.create_oval(1220, 200, 1440, 420)
+    new_canvas.create_oval(1480, 200, 1700, 420)
+    new_canvas.create_oval(180, 460, 400, 680)
+    new_canvas.create_oval(440, 460, 660, 680)
+    new_canvas.create_oval(700, 460, 920, 680)
+    new_canvas.create_oval(960, 460, 1180, 680)
+    new_canvas.create_oval(1220, 460, 1440, 680)
+    new_canvas.create_oval(1480, 460, 1700, 680)
+    new_canvas.create_oval(700, 720, 920, 940)
+    new_canvas.create_oval(960, 720, 1180, 940)
+    # new_canvas.create_oval(180, 200, 400, 420, fill="#2F507D", outline="#000000")
+
 
 # Initial Log-In Window:
 start_root_window()
