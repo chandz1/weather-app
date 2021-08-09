@@ -15,7 +15,7 @@ cursor.execute("DROP TABLE IF EXISTS AllData")
 
 try:
     cursor.execute(
-        "CREATE TABLE AllData (_date varchar(32), tempHigh varchar(32), tempLow varchar(32), windSpeed varchar(32), Humidity varchar(32), descrip varchar(64), realFeel varchar(32), precipChance varchar(32));"
+        "CREATE TABLE AllData (_date varchar(32) NOT NULL PRIMARY KEY, tempHigh varchar(32), tempLow varchar(32), windSpeed varchar(32), Humidity varchar(32), descrip varchar(64), realFeel varchar(32), precipChance varchar(32));"
     )
 except mysql.connector.Error as err:
     # if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
