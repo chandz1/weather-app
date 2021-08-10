@@ -1,1200 +1,150 @@
-9 Aug
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-10 Aug
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-11 Aug
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-12 Aug
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-13 Aug
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-14 Aug
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-15 Aug
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-16 Aug
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-17 Aug
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-18 Aug
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-19 Aug
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-20 Aug
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-21 Aug
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-22 Aug
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-23 Aug
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-9 Aug/8
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-10 Aug/8
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-11 Aug/8
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-12 Aug/8
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-13 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-14 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-15 Aug/8
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-16 Aug/8
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-17 Aug/8
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-18 Aug/8
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-19 Aug/8
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-20 Aug/8
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-21 Aug/8
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-22 Aug/8
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-23 Aug/8
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-9 Aug/8
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-10 Aug/8
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-11 Aug/8
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-12 Aug/8
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-13 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-14 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-15 Aug/8
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-16 Aug/8
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-17 Aug/8
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-18 Aug/8
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-19 Aug/8
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-20 Aug/8
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-21 Aug/8
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-22 Aug/8
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-23 Aug/8
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-9 Aug/8
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-10 Aug/8
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-11 Aug/8
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-12 Aug/8
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-13 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-14 Aug/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-15 Aug/8
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-16 Aug/8
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-17 Aug/8
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-18 Aug/8
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-19 Aug/8
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-20 Aug/8
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-21 Aug/8
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-22 Aug/8
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-23 Aug/8
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-9/8
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-10/8
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-11/8
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-12/8
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-13/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-14/8
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-15/8
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-16/8
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-17/8
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-18/8
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-19/8
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-20/8
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-21/8
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-22/8
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-23/8
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-8/9
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-8/98/10
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-8/98/108/11
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-8/98/108/118/12
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-8/98/108/118/128/13
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-8/98/108/118/128/138/14
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-8/98/108/118/128/138/148/15
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-8/98/108/118/128/138/148/158/16
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-8/98/108/118/128/138/148/158/168/17
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-8/98/108/118/128/138/148/158/168/178/18
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-8/98/108/118/128/138/148/158/168/178/188/19
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-8/98/108/118/128/138/148/158/168/178/188/198/20
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-8/98/108/118/128/138/148/158/168/178/188/198/208/21
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-8/98/108/118/128/138/148/158/168/178/188/198/208/218/22
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-8/98/108/118/128/138/148/158/168/178/188/198/208/218/228/23
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-8/9
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-8/10
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
-8/11
-35ï¿½C
-27ï¿½C
-13 km/h
-54%
-Sunny.
-41ï¿½ï¿½C
-6%
-Wednesday
-
-8/12
-35ï¿½C
-27ï¿½C
-10 km/h
-57%
-Broken clouds.
-40ï¿½ï¿½C
-6%
-Thursday
-
-8/13
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
-Friday
-
-8/14
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
-Saturday
-
-8/15
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
-Sunday
-
-8/16
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
-Sunny.
-37ï¿½ï¿½C
-5%
-Monday
-
-8/17
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
-Tuesday
-
-8/18
-36ï¿½C
-30ï¿½C
-14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
-Wednesday
-
-8/19
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
-Thursday
-
-8/20
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
-Friday
-
-8/21
-37ï¿½C
-31ï¿½C
-12 km/h
-51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
-Saturday
-
-8/22
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
-Sunday
-
-8/23
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
-Monday
-
-2021/8/9
-30ï¿½C
-28ï¿½C
-8 km/h
-81%
-Thundershowers. Breaks of sun late.
-37ï¿½ï¿½C
-53%
-Monday
-
-2021/8/10
-34ï¿½C
-26ï¿½C
-13 km/h
-56%
-Light rain. Sunny.
-40ï¿½ï¿½C
-61%
-Tuesday
-
 2021/8/11
-35ï¿½C
-27ï¿½C
+35°C
+27°C
 13 km/h
 54%
 Sunny.
-41ï¿½ï¿½C
-6%
+41 °C
+2%
 Wednesday
 
 2021/8/12
-35ï¿½C
-27ï¿½C
+35°C
+27°C
 10 km/h
-57%
+54%
 Broken clouds.
-40ï¿½ï¿½C
-6%
+40 °C
+4%
 Thursday
 
 2021/8/13
-34ï¿½C
-27ï¿½C
+34°C
+27°C
 11 km/h
-58%
-Showers early. Cloudy.
-40ï¿½ï¿½C
-59%
+60%
+Mostly cloudy.
+40 °C
+5%
 Friday
 
 2021/8/14
-34ï¿½C
-27ï¿½C
-11 km/h
-58%
-Isolated tstorms late. Mostly cloudy.
-40ï¿½ï¿½C
-45%
+34°C
+27°C
+12 km/h
+57%
+Showers late. Broken clouds.
+40 °C
+41%
 Saturday
 
 2021/8/15
-37ï¿½C
-31ï¿½C
-7 km/h
-29%
-Increasing cloudiness.
-37ï¿½ï¿½C
-5%
+33°C
+27°C
+10 km/h
+62%
+Mostly sunny.
+38 °C
+6%
 Sunday
 
 2021/8/16
-37ï¿½C
-31ï¿½C
-14 km/h
-24%
+36°C
+30°C
+11 km/h
+32%
 Sunny.
-37ï¿½ï¿½C
+36 °C
 5%
 Monday
 
 2021/8/17
-37ï¿½C
-30ï¿½C
-14 km/h
-27%
-Sunny.
-36ï¿½ï¿½C
-3%
+35°C
+28°C
+12 km/h
+40%
+Showers early. Broken clouds.
+36 °C
+42%
 Tuesday
 
 2021/8/18
-36ï¿½C
-30ï¿½C
+35°C
+29°C
 14 km/h
-34%
-Sunny.
-37ï¿½ï¿½C
-6%
+38%
+Clearing skies.
+36 °C
+41%
 Wednesday
 
 2021/8/19
-37ï¿½C
-30ï¿½C
-12 km/h
-31%
-Increasing cloudiness.
-36ï¿½ï¿½C
-6%
+34°C
+29°C
+8 km/h
+42%
+Showers early. Clearing skies.
+35 °C
+42%
 Thursday
 
 2021/8/20
-37ï¿½C
-30ï¿½C
-19 km/h
-47%
-Light showers. Cloudy.
-42ï¿½ï¿½C
-48%
+34°C
+30°C
+6 km/h
+46%
+Light showers. Increasing cloudiness.
+36 °C
+44%
 Friday
 
 2021/8/21
-37ï¿½C
-31ï¿½C
-12 km/h
+35°C
+31°C
+16 km/h
+53%
+Light showers. Overcast.
+40 °C
 51%
-Light showers. Morning clouds.
-46ï¿½ï¿½C
-50%
 Saturday
 
 2021/8/22
-37ï¿½C
-31ï¿½C
-8 km/h
-44%
-A few tstorms. Broken clouds.
-43ï¿½ï¿½C
-95%
+35°C
+31°C
+16 km/h
+65%
+Light showers. Overcast.
+44 °C
+63%
 Sunday
 
 2021/8/23
-37ï¿½C
-31ï¿½C
-10 km/h
-54%
-Thunderstorms. Overcast.
-46ï¿½ï¿½C
-99%
+35°C
+31°C
+20 km/h
+49%
+Showers late. Clearing skies.
+38 °C
+44%
 Monday
+
+2021/8/24
+34°C
+31°C
+12 km/h
+47%
+Afternoon clouds.
+37 °C
+8%
+Tuesday
+
+2021/8/25
+35°C
+31°C
+5 km/h
+43%
+Light showers. Cloudy.
+36 °C
+57%
+Wednesday
 

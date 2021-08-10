@@ -15,7 +15,7 @@ cursor.execute("DROP TABLE IF EXISTS AllData")
 
 try:
     cursor.execute(
-        "CREATE TABLE AllData (_date varchar(32) NOT NULL PRIMARY KEY, tempHigh varchar(32), tempLow varchar(32), windSpeed varchar(32), Humidity varchar(32), descrip varchar(64), realFeel varchar(32), precipChance varchar(32));"
+        "CREATE TABLE AllData (_date Date NOT NULL PRIMARY KEY, tempHigh varchar(32), tempLow varchar(32), windSpeed varchar(32), Humidity varchar(32), descrip varchar(64), realFeel varchar(32), precipChance varchar(32), day varchar(32));"
     )
 except mysql.connector.Error as err:
     # if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
@@ -24,9 +24,9 @@ except mysql.connector.Error as err:
 
 file = open("tempData.txt")
 dailyData = file.readlines()
-for i in range(0, 127, 9):
+for i in range(0, 141, 10):
     cursor.execute(
-        "INSERT INTO AllData VALUES (%s,%s,%s,%s,%s,%s,%s,%s);",
+        "INSERT INTO AllData VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);",
         (
             (dailyData[i]).rstrip(),
             (dailyData[i + 1]).rstrip(),
@@ -36,6 +36,7 @@ for i in range(0, 127, 9):
             (dailyData[i + 5]).rstrip(),
             (dailyData[i + 6]).rstrip(),
             (dailyData[i + 7]).rstrip(),
+            (dailyData[i + 8]).rstrip(),
         ),
     )
     db.commit()
