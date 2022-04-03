@@ -2,6 +2,7 @@
 
 import requests
 import datetime
+import PythonSQLConnection
 from bs4 import BeautifulSoup
 
 # Variables
@@ -17,6 +18,7 @@ desc = None
 secondaryData = None
 dailyHigh = None
 dailyLow = None
+feelsLike = None
 url_prefix = ""
 a = 1
 b = 0
@@ -94,7 +96,12 @@ def weatherData():
     global secondaryData
     global dailyHigh
     global dailyLow
+    global feelsLike
     global newDate
+    a = 1
+    b = 0
+    d = 0
+    e = 0
     if userCountry == None and userCity == None:
         src = requests.get(f"https://www.timeanddate.com{url_prefix}/ext").text
     elif userCity != None and userCountry != None:
@@ -116,6 +123,7 @@ def weatherData():
         date = dailyDate.replace(dailyDay, "")
         dailyHigh = ((impData[a].text).split("/")[0] + "°C").replace(" ", "")
         dailyLow = (((impData[a].text).split("/")[1]).replace("\xa0", "")).strip()
+        feelsLike = (secondaryData[b].text).replace("\xa0", "")
         if dailyDay == "Sun":
             dailyDay = "Sunday"
         elif dailyDay == "Mon":
@@ -145,7 +153,7 @@ def weatherData():
         print(impData[a + 3].text)
         print(impData[a + 5].text)
         print(desc[d].text)
-        print(secondaryData[b].text)
+        print(feelsLike)
         print(secondaryData[b + 1].text)
         print(dailyDay)
         appendFile()
@@ -154,6 +162,7 @@ def weatherData():
         d += 1
         newDate = ""
         print()
+    PythonSQLConnection.PythonSQLConnection()
 
 
 def appendFile():
@@ -164,7 +173,7 @@ def appendFile():
         openedFile.write(impData[a + 3].text + "\n")
         openedFile.write(impData[a + 5].text + "\n")
         openedFile.write(desc[d].text + "\n")
-        openedFile.write(secondaryData[b].text + "\n")
+        openedFile.write(feelsLike + "\n")
         openedFile.write(secondaryData[b + 1].text + "\n")
         openedFile.write(dailyDay + "\n\n")
 

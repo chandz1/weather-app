@@ -1,15 +1,17 @@
 import json
 import requests
+from requests import get
 
 
 def get_location():
+    ip = get('https://api.ipify.org').text
     send_url = (
-        "http://api.ipstack.com/check?access_key=6dd029effc540661b332255ceea35c6a"
+        "http://ipwhois.app/json/{}".format(ip)
     )
     geo_req = requests.get(send_url)
     geo_json = json.loads(geo_req.text)
     city = geo_json["city"]
-    country = geo_json["country_name"]
+    country = geo_json["country"]
     return city, country
 
 

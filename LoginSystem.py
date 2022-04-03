@@ -4,6 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from win32api import GetSystemMetrics
 import smtplib
+import PythonSQLConnection
 import SendMail
 import SearchResults
 import UrlScrapper
@@ -57,6 +58,7 @@ class AddButtons:
         self.font = font
 
     def create_buttons(self, rely=0.5, relx=0.5, image=None, bd=1):
+        global button
         button = tk.Button(
             self.master,
             text=self.text,
@@ -439,6 +441,7 @@ def search_input(event=None):
     global list_box
     global no_place
     global location
+    global new_canvas
     if search_bar.get() != "":
         try:
             quit(no_place)
@@ -447,6 +450,12 @@ def search_input(event=None):
         # SearchResults.list_of_places.clear()
         try:
             quit(list_box)
+        except Exception:
+            pass
+        try:
+            if len(new_canvas.find_all()) > 20:
+                new_canvas.delete("all")
+                home()
         except Exception:
             pass
         SearchResults.place = search_bar.get()
@@ -468,6 +477,10 @@ def search_input(event=None):
             UrlScrapper.scrape_url()
             WeatherForecast.url_prefix = UrlScrapper.url_prefix
             WeatherForecast.weatherData()
+            quit(list_box)
+            quit(button)
+            search_bar.delete(0, "end")
+            display_data(PythonSQLConnection.fname)
 
         get_location = AddButtons(root, "OK", command=get_location_input)
         get_location.create_buttons(0.8, bd=0)
@@ -569,7 +582,7 @@ def main_interface():
     global bg_image
 
     bg_image = ImageTk.PhotoImage(
-        Image.open(f"Background Pics/Stormy{screen_width}x{screen_height}.jpg")
+        Image.open(f"Background Pics/DarkStormy{screen_width}x{screen_height}.jpg")
     )
     arrow_image = ImageTk.PhotoImage(Image.open("Buttons/ArrowButton.png"))
     search_image = ImageTk.PhotoImage(Image.open("Buttons/SearchButton.png"))
@@ -646,6 +659,7 @@ def main_interface():
 
 
 def home():
+    global new_canvas
     frame = tk.Frame()
     canvas.create_window(
         38,
@@ -664,34 +678,100 @@ def home():
     new_canvas.pack(anchor=tk.CENTER)
     new_canvas.create_image(screen_width / 2, screen_height / 2, image=bg_image)
 
-    new_canvas.create_oval(180, 200, 400, 420)
-    new_canvas.create_oval(440, 200, 660, 420)
-    new_canvas.create_oval(700, 200, 920, 420)
-    new_canvas.create_oval(960, 200, 1180, 420)
-    new_canvas.create_oval(1220, 200, 1440, 420)
-    new_canvas.create_oval(1480, 200, 1700, 420)
-    new_canvas.create_oval(180, 460, 400, 680)
-    new_canvas.create_oval(440, 460, 660, 680)
-    new_canvas.create_oval(700, 460, 920, 680)
-    new_canvas.create_oval(960, 460, 1180, 680)
-    new_canvas.create_oval(1220, 460, 1440, 680)
-    new_canvas.create_oval(1480, 460, 1700, 680)
-    new_canvas.create_oval(700, 720, 920, 940)
-    new_canvas.create_oval(960, 720, 1180, 940)
     # new_canvas.create_oval(180, 200, 400, 420, fill="#2F507D", outline="#000000")
 
 
-# Initial Log-In Window:
-start_root_window()
-primary_window()
+def display_data(info):
+    global new_canvas
+    pos_x = 290
+    pos_y = 320
+    x = 0
+    new_canvas.create_text(
+        941,
+        100,
+        width=300,
+        text="14 Day Forecast Of {}".format(
+            WeatherForecast.url_prefix.split("/")[-1].capitalize()
+        ),
+        fill="#1ed760",
+        font=("Arial 28"),
+        justify="center",
+    )
+    new_canvas.create_oval(180, 200, 400, 420, width=2)
+    new_canvas.create_oval(440, 200, 660, 420, width=2)
+    new_canvas.create_oval(700, 200, 920, 420, width=2)
+    new_canvas.create_oval(960, 200, 1180, 420, width=2)
+    new_canvas.create_oval(1220, 200, 1440, 420, width=2)
+    new_canvas.create_oval(1480, 200, 1700, 420, width=2)
+    new_canvas.create_oval(180, 460, 400, 680, width=2)
+    new_canvas.create_oval(440, 460, 660, 680, width=2)
+    new_canvas.create_oval(700, 460, 920, 680, width=2)
+    new_canvas.create_oval(960, 460, 1180, 680, width=2)
+    new_canvas.create_oval(1220, 460, 1440, 680, width=2)
+    new_canvas.create_oval(1480, 460, 1700, 680, width=2)
+    new_canvas.create_oval(700, 720, 920, 940, width=2)
+    new_canvas.create_oval(960, 720, 1180, 940, width=2)
+    for i in info[0:14]:
+        string = "\U0001F4C5: {}\n\U00002B81: {}\n\U0001F327: {}\n\U0001F4A8: {}\n\U0001F4A6: {}\n".format(
+            info[info.index(i)][0],
+            info[info.index(i)][1].replace("°C", "") + " / " + info[0][2],
+            info[info.index(i)][7],
+            info[info.index(i)][3],
+            info[info.index(i)][4],
+        )
+        if pos_x <= 1850 and pos_y == 320:
+            new_canvas.create_text(
+                pos_x,
+                pos_y,
+                width=150,
+                text=string,
+                fill="#00f0ff",
+                font=("Helvetica 16"),
+            )
+            pos_x += 260
+            if pos_x == 1850:
+                pos_y = 580
+        elif pos_y == 580:
+            if pos_x == 1850:
+                pos_x = 290
+            new_canvas.create_text(
+                pos_x,
+                pos_y,
+                width=150,
+                text=string,
+                fill="#00f0ff",
+                font=("Helvetica 16"),
+            )
+            pos_x += 260
+            if pos_x == 1850:
+                pos_y = 840
+        elif pos_y == 840:
+            if x == 0:
+                pos_x = 810
+            new_canvas.create_text(
+                pos_x,
+                pos_y,
+                width=150,
+                text=string,
+                fill="#00f0ff",
+                font=("Helvetica 16"),
+            )
+            pos_x += 260
+            x += 1
 
-# Main Interface:
-while True:
-    if logged_in is True or guest is True:
-        if guest is True:
-            guest = False
-        else:
-            logged_in = False
-        time.sleep(1)
-        start_root_window()
-        main_interface()
+
+if __name__ == "__main__":
+    # Initial Log-In Window:
+    start_root_window()
+    primary_window()
+
+    # Main Interface:
+    while True:
+        if logged_in is True or guest is True:
+            if guest is True:
+                guest = False
+            else:
+                logged_in = False
+            time.sleep(1)
+            start_root_window()
+            main_interface()
